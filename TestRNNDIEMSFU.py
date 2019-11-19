@@ -9,7 +9,7 @@ import os
 
 
 # global w_img,h_img
-# w_img = 640 #
+# w_img = 640 #TrainRNN_sprase.py
 # h_img = 480 #
 batch_size = 1
 framesnum = 16
