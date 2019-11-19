@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="224fb649-7068-4977-9d14-fb82f89fc8e0" name="irc207" url="http://192.168.226.97">
+        <fileTransfer host="192.168.226.97" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="0773cb4e-0438-41f0-8196-6893f42e97fc" name="irc207GPU4" url="http://10.134.162.112">
+        <fileTransfer host="10.134.162.112" port="22" rootFolder="/home/jianglai" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
