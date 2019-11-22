@@ -1,12 +1,12 @@
 import numpy as np
 import tensorflow as tf
-import cv2
 import time
 import yolo_lstmconv2 as Network  # define the CNN
 import random
 from scipy.optimize import linprog
 import os
 import glob
+import imageio
 os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
 # global w_img,h_img
@@ -20,17 +20,18 @@ outputDim = 112
 output_size = (outputDim, outputDim)
 epoch_num = 20
 overlapframe = 10 #0~framesnum+frame_skip
+
 dp_in = 0.75
 dp_h = 0.75
 MC_count = 100
-CB_FB = 0.8
-numdis = 10
+CB_FB = 1
+numdis = 50
 random.seed(a=730)
 tf.set_random_seed(730)
 frame_skip = 5
 dis_type = 'dualKL' # Wassers,dualWassers, KL,dualKL
 dislambda = 0.25
-
+modelname = 'Newlstmconv_prefinal_loss05_dp075_DualKL'
 
 TrainingFile1 = '../LEDOVTFrecords/training/'
 TrainingFile2 = '../LEDOVTFrecords/validation/'
@@ -46,6 +47,17 @@ CheckpointFile_yolo = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask
 CheckpointFile_flow = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
 SaveFile = './model/'
 Summary_dir = './summary'
+res_dir = './res'
+# Summary_dir = '/tmp/aremega/deepvs/summary'
+# res_dir = '/tmp/aremega/deepvs/res'
+# SaveFile = '/tmp/aremega/deepvs/model/'
+if not os.path.isdir(Summary_dir):
+    os.mkdir(Summary_dir)
+if not os.path.isdir(SaveFile):
+    os.mkdir(SaveFile)
+if not os.path.isdir(res_dir):
+    os.mkdir(res_dir)
+
 
 TrainingData_index = [0, 1]
 ValidData_index = [0, 1, 2]
@@ -146,41 +158,42 @@ def get_centermask(f_shape, fb):  # shape[batchsize, height, width, channals]
 
 def out_loss(disout, disgt, distype):
     #start_time = time.time()
-    shapes = disout.shape
-    assert disout.shape == disgt.shape
-    assert len(shapes) == 3
-    l = numdis
-    A_r = np.zeros((l, l, l))
-    A_t = np.zeros((l, l, l))
-    for i in range(l):
-        for j in range(l):
-            A_r[i, i, j] = 1
-            A_t[i, j, i] = 1
-    D = np.ndarray(shape=(l, l))
-    for i in range(l):
-        for j in range(l):
-            D[i, j] = abs(range(l)[i] - range(l)[j])
-    A = np.concatenate((A_r.reshape((l, l ** 2)), A_t.reshape((l, l ** 2))), axis=0)
-    c = D.reshape((l ** 2))
-    loss = 0
-    if distype == 'Wassers':
-        for i in range(shapes[0]):
-            for j in range(shapes[1]):
-                diso = disout[i,j,:]
-                disg = disgt[i,j,:]
-                b = np.concatenate((diso, disg), axis=0)
-                opt_res = linprog(c, A_eq=A, b_eq=b)
-                emd = opt_res.fun
-                loss = loss + emd
-    elif distype == 'dualWassers':
-        for i in range(shapes[0]):
-            for j in range(shapes[1]):
-                diso = disout[i,j,:]
-                disg = disgt[i,j,:]
-                b = np.concatenate((diso, disg), axis=0)
-                opt_res = linprog(-b, A.T, c, bounds=(None, None))
-                emd = -opt_res.fun
-                loss = loss + emd
+    if distype == 'Wassers' or distype == 'dualWassers':
+        shapes = disout.shape
+        assert disout.shape == disgt.shape
+        assert len(shapes) == 3
+        l = numdis
+        A_r = np.zeros((l, l, l))
+        A_t = np.zeros((l, l, l))
+        for i in range(l):
+            for j in range(l):
+                A_r[i, i, j] = 1
+                A_t[i, j, i] = 1
+        D = np.ndarray(shape=(l, l))
+        for i in range(l):
+            for j in range(l):
+                D[i, j] = abs(range(l)[i] - range(l)[j])
+        A = np.concatenate((A_r.reshape((l, l ** 2)), A_t.reshape((l, l ** 2))), axis=0)
+        c = D.reshape((l ** 2))
+        loss = 0
+        if distype == 'Wassers':
+            for i in range(shapes[0]):
+                for j in range(shapes[1]):
+                    diso = disout[i,j,:]
+                    disg = disgt[i,j,:]
+                    b = np.concatenate((diso, disg), axis=0)
+                    opt_res = linprog(c, A_eq=A, b_eq=b)
+                    emd = opt_res.fun
+                    loss = loss + emd
+        elif distype == 'dualWassers':
+            for i in range(shapes[0]):
+                for j in range(shapes[1]):
+                    diso = disout[i,j,:]
+                    disg = disgt[i,j,:]
+                    b = np.concatenate((diso, disg), axis=0)
+                    opt_res = linprog(-b, A.T, c, bounds=(None, None))
+                    emd = -opt_res.fun
+                    loss = loss + emd
     else:
         loss = 0
     return loss
@@ -225,88 +238,89 @@ def main():
     saver.restore(sess, CheckpointFile_yolo)
     saver1.restore(sess, CheckpointFile_flow)
 
-    saver2 = tf.train.Saver()
+    saver2 = tf.train.Saver(max_to_keep=15)
     summary_op = tf.summary.merge_all()
-    summary_writer = tf.summary.FileWriter(Summary_dir, sess.graph)
+    subname = os.path.join(Summary_dir, modelname)
+    subres = os.path.join(res_dir, modelname)
+    if not os.path.isdir(subres):
+        os.mkdir(subres)
+    if not os.path.isdir(subname):
+        os.mkdir(subname)
+        summary_writer = tf.summary.FileWriter(subname, sess.graph)
+    else:
+        summary_writer = tf.summary.FileWriter(subname, sess.graph)
 
-    videofile = open(VideoNameFile, 'r')
-    allline = videofile.readlines()
-    VideoIndex_list = []
-    VideoName_list = []
-    for line in allline:
-        lindex = line.index('\t')
-        VideoIndex = int(line[:lindex])
-        VideoName = line[lindex + 1:-1]
-        VideoIndex_list.append(VideoIndex)
-        VideoName_list.append(VideoName)
-    VideoNum = len(VideoName_list)
-    epochsort = np.arange(0,VideoNum)
 
+    filenames = tf.placeholder(tf.string)
+    dataset = tf.data.TFRecordDataset(filenames)
+    dataset = dataset.map(_parse_function)
+    dataset = dataset.apply(tf.contrib.data.batch_and_drop_remainder(1))
+    iterator = dataset.make_initializable_iterator()
+    image, shape, GTmap = iterator.get_next()
+
+    VideoNum = len(TrainingList)
+    epochsort = np.arange(0, VideoNum)
+    loss = 0
     iter = 0
-    batch_count = 0
-
+    start_time = time.time()
+    start_time0 = time.time()
+    start_time1 = time.time()
     for epoch in range(epoch_num):
-        if epoch % 5 == 0:
-            random.shuffle(epochsort)
+        random.shuffle(epochsort)
         print('%d-th epochs' % (epoch))
+        v_count = 0
+        losslist = np.array([])
         for v in epochsort:
-            VideoIndex = VideoIndex_list[v]
-            VideoName = VideoName_list[v]
-            VideoCap = cv2.VideoCapture(Video_dir + '\\' + VideoName + '\\' + VideoName + '_448.avi')
-            GTCap = cv2.VideoCapture(Video_dir + '\\' + VideoName + '\\' + 'GT_112.avi')
-            VideoSize = (int(VideoCap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(VideoCap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
-            VideoFrame = int(VideoCap.get(cv2.CAP_PROP_FRAME_COUNT))
-            # assert VideoSize[0] == int(GTCap.get(cv2.CAP_PROP_FRAME_WIDTH)) and VideoSize[1] == int(
-            #     GTCap.get(cv2.CAP_PROP_FRAME_HEIGHT)) and VideoFrame == int(GTCap.get(cv2.CAP_PROP_FRAME_COUNT))
-            print('New video: %s (%d) with %d frames and size of (%d, %d)' % (VideoName, VideoIndex ,VideoFrame, VideoSize[1], VideoSize[0]))
-            start_time = time.time()
-            losslist = np.array([])
-            videostart = True
-            while VideoCap.get(cv2.CAP_PROP_POS_FRAMES) < VideoFrame - framesnum - frame_skip + overlapframe:
-                if videostart:
-                    Input_slides, GTmap_slides = _BatchExtraction(VideoCap, GTCap, framesnum + frame_skip, video_start = videostart)
-                    videostart = False
-                    Input_last = Input_slides
-                    GT_last = GTmap_slides
-                else:
-                    Input_slides, GTmap_slides = _BatchExtraction(VideoCap, GTCap, framesnum + frame_skip, last_input = Input_last, last_GT = GT_last,
-                                                                  video_start = videostart)
-                    Input_last = Input_slides
-                    GT_last = GTmap_slides
-                distmatrix, meanmask = get_centermask((1, 28, 28, 128, 4 * 2),CB_FB)
-                mask_in_s = np.random.binomial(MC_count, dp_in, (1, 28, 28, 128, 4 * 2)) * distmatrix / (MC_count * meanmask)
-                mask_h_s = np.random.binomial(MC_count, dp_h, (1, 28, 28, 128, 4 * 2)) * distmatrix / (MC_count * meanmask)
+            vfile = TrainingList[v]
+            vdir = os.path.split(vfile)[-1]
+            vname = vdir.split('.')[0]
+            v_count = v_count + 1
+            batch_count = 0
+            GTmap_Batch = []
+            Input_Batch = []
+            mask_in = []
+            mask_h = []
+            sess.run(iterator.initializer, feed_dict={filenames: vfile})
+            GTall, _, Frameall = sess.run([GTmap, shape, image])
+            numframe = 1
+            while True:
+                try:
+                    GTmap1, _, image1 = sess.run([GTmap, shape, image])
+                    GTall = np.concatenate((GTall, GTmap1), axis=0)
+                    Frameall = np.concatenate((Frameall, image1), axis=0)
+                    numframe = numframe + 1
+                except tf.errors.OutOfRangeError:
+                    break
+            frameindex = 0
+            while frameindex+framesnum+frame_skip <= numframe:
+                imageInput = Frameall[fameindex:(frameindex+framesnum+frame_skip), ...]
+                GTmapInput = GTall[frameindex:(frameindex+framesnum+frame_skip), ...]
+                imageInput = imageInput[np.newaxis, ...]
+                GTmapInput = GTmapInput[np.newaxis, ...]
+                frameindex = frameindex + overlapframe
+                distmatrix, meanmask = get_centermask((1, 28, 28, 128, 4 * 2), CB_FB)
+                mask_in_s = np.random.binomial(MC_count, dp_in, (1, 28, 28, 128, 4 * 2)) * distmatrix / (
+                            MC_count * meanmask)
+                mask_h_s = np.random.binomial(MC_count, dp_h, (1, 28, 28, 128, 4 * 2)) * distmatrix / (
+                            MC_count * meanmask)
                 if batch_count == 0:
-                    Input_Batch = Input_slides
-                    GTmap_Batch = GTmap_slides
-                    batch_count = batch_count + 1
+                    GTmap_Batch = GTmapInput
+                    Input_Batch = imageInput
                     mask_in = mask_in_s
                     mask_h = mask_h_s
+                    batch_count = batch_count + 1
                 else:
-                    GTmap_Batch = np.concatenate((GTmap_Batch, GTmap_slides), axis=0)
-                    Input_Batch = np.concatenate((Input_Batch, Input_slides), axis=0)
+                    GTmap_Batch = np.concatenate((GTmap_Batch, GTmapInput), axis=0)
+                    Input_Batch = np.concatenate((Input_Batch, imageInput), axis=0)
                     mask_in = np.concatenate((mask_in, mask_in_s), axis=0)
                     mask_h = np.concatenate((mask_h, mask_h_s), axis=0)
                     batch_count = batch_count + 1
-
                 if batch_count ==  batch_size:
                         batch_count = 0
                         iter += 1
-                        disout, disgt = sess.run([outHisop, gtHisop],
-                                           feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch, RNNmask_in: mask_in,
-                                                      RNNmask_h: mask_h})
-                        metricloss = out_loss(disout, disgt, distype = dis_type)
-                        _, loss = sess.run([train_op, loss_op],  feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch, RNNmask_in: mask_in, RNNmask_h: mask_h, exloss:metricloss})
+                        _, loss = sess.run([train_op, loss_op],  feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch, RNNmask_in: mask_in, RNNmask_h: mask_h, exloss:0})
                         assert not np.isnan(loss), 'Model diverged with loss = NaN'
                         losslist = np.insert(losslist, 0, values=loss, axis=0)
-                        loss1,loss2,loss3 = sess.run([loss_op1, loss_op2,loss_op3], feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch, RNNmask_in:mask_in ,RNNmask_h: mask_h, exloss:metricloss})
-                        print(loss1,loss2,loss3)
-                        if iter % 50000 == 0:
-                            saver2.save(sess, SaveFile + 'lstmconv_prefinal_loss05_dp075_MC100_centerdrop08', global_step=iter)
-                            # summary, loss = sess.run([summary_op, loss_op],
-                            #                             feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch, RNNmask_in:mask_in ,RNNmask_h: mask_h})
-                            # assert not np.isnan(loss), 'Model diverged with loss = NaN'
-                            # summary_writer.add_summary(summary, iter)
                         if iter % 100 == 0:
                             # print('%d iterations, %f for each iteration' % (iter, duration))
                             # np_predict, summary, _,l1,l2 = sess.run([predicts, summary_op, train_op,loss_op1,loss_op2], feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch})
@@ -315,41 +329,59 @@ def main():
                                 feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch, RNNmask_in:mask_in ,RNNmask_h: mask_h, exloss:metricloss})
                             assert not np.isnan(loss), 'Model diverged with loss = NaN'
                             summary_writer.add_summary(summary, iter)
-                            print('The loss is %f' % (loss))
-                            # print('The klloss is %f' % (l1))
-                            np_predict = np_predict[0,0, :, :, 0]
-                            Out_frame = cv2.resize(np_predict, VideoSize)
-                            Out_frame = Out_frame * 255
-                            Out_frame = np.uint8(Out_frame)
-                            cv2.imwrite("./out.jpg", Out_frame)
-                            GTmap = GTmap_Batch[0, 0,:, :, 0]
-                            GTmap = cv2.resize(GTmap, VideoSize)
-                            GTmap = GTmap * 255
-                            GTmap = np.uint8(GTmap)
-                            cv2.imwrite("./GT.jpg", GTmap)
-                            #loss1,loss2,loss3 = sess.run([loss_op1, loss_op2,loss_op3],
-                                                       #feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch, RNNmask_in:mask_in ,RNNmask_h: mask_h})
 
-                           # print(loss1,loss2,loss3)
+            if epoch == 0:
+                usedtime = (time.time() - start_time)/3600
+                meanloss = losslist.mean()
+                print('%d th video: %s; Have used time: %f hrs, average loss %f' % (v_count, vname, usedtime,meanloss))
 
-            duration = float(time.time() - start_time)
-            meanloss = losslist.mean()
-            print('Total time for this video %f, average loss %f ' % (duration, meanloss))
-                # print(duration)
-            VideoCap.release()
-            GTCap.release()
+        duration = time.time() - start_time1
+        start_time1 = time.time()
+        meanloss = losslist.mean()
+        losslist = np.array([])
+        print('Total time for this epoch is %f, average loss %f.' % (
+            duration, meanloss))
+        hrleft = ((epochnum - saver2) / saver2) * (start_time1 - start_time0)
+        print('Left hours: %f.' % (hrleft / 3600))
+        if epoch % 2 == 0:
+            saver2.save(sess, SaveFile + modelname, global_step=epoch+1)
+            subsubres = os.path.join(subres, '%03d' % (epoch))
+            if not os.path.isdir(subsubres):
+                os.mkdir(subsubres)
+            for j in ValidData_index:
+                tfdir = Valid_list[j]
+                datasetname = tfdir.split('/')[1]
+                sumKL = 0
+                sumCC = 0
+                count = 0
+                subsubres = os.path.join(subres, '%03d' % (epoch))
+                if not os.path.isdir(subsubres):
+                    os.mkdir(subsubres)
+                for validfile in glob.glob(tfdir + '*.tfrecords'):
+                    validCC, validKL = valid(validfile)
+                    # print(validCC)
+                    # print(validKL)
+                    sumKL = sumKL + validKL
+                    sumCC = sumCC + validCC
+                    # sumLoss = sumLoss + validloss
+                    count = count + 1
 
-def valid(filename):
-    dataset2 = tf.data.TFRecordDataset(filename)
-    dataset2 = dataset2.map(_parse_function)
-    dataset2 = dataset2.apply(tf.contrib.data.batch_and_drop_remainder(frame_num * (1 + skip_frame)))
-    iterator2 = dataset2.make_initializable_iterator()
-    valimage, valshape, valGTmap = iterator2.get_next()
-    sess.run(iterator2.initializer)
+                summary2 = tf.Summary(value=[
+                    tf.Summary.Value(tag=datasetname + "_ValKL", simple_value=sumKL / count),
+                    tf.Summary.Value(tag=datasetname + "_ValCC", simple_value=sumCC / count),
+                    #   tf.Summary.Value(tag=datasetname + "_Valloss", simple_value=sumLoss / count),
+                ])
+                summary_writer.add_summary(summary2, halfepoch)
+
+
+
+def valid(filename, outdir):
+    sess.run(iterator.initializer, feed_dict={filenames: filename})
     sum_CC = 0
     sum_KL = 0
     sum_loss = 0
     iter = 0
+    batch_size = 1
     count = 0
     GTBatch = []
     imageBatch = []
@@ -358,35 +390,49 @@ def valid(filename):
     mask_in = np.ones([batch_size, mask_size[0], mask_size[1], maskChannel, 4, LSTMCellNum]) * (1 - dp_in)
     mask_h = np.ones([batch_size, mask_size[0], mask_size[1], maskChannel, 4, LSTMCellNum]) * (1 - dp_h)
     batch_count = 0
+
+    GTall, _, Frameall = sess.run([GTmap, shape, image])
+    numframe = 1
     while True:
         try:
-            GTmap1, _, image1 = sess.run([valGTmap, valshape, valimage])
-            GTmap1 = GTmap1[concate_frame - 1::(1 + skip_frame), ...]
-            imageCon = []
-            for i in range(concate_frame):
-                imageTemp = image1[i::(1 + skip_frame), ...]
-                if i == 0:
-                    imageCon = imageTemp
-                else:
-                    imageCon = np.concatenate((imageCon, imageTemp), axis=-1)
-            GTmap1 = GTmap1[np.newaxis, ...]
-            imageCon = imageCon[np.newaxis, ...]
-            if batch_count == 0:
-                GTmapInput = GTmap1
-                imageInput = imageCon
-                batch_count = batch_count + 1
-            else:
-                GTmapInput = np.concatenate((GTmapInput, GTmap1), axis=0)
-                imageInput = np.concatenate((imageInput, imageCon), axis=0)
-                batch_count = batch_count + 1
+            GTmap1, _, image1 = sess.run([GTmap, shape, image])
+            GTall = np.concatenate((GTall, GTmap1), axis=0)
+            Frameall = np.concatenate((Frameall, image1), axis=0)
+            numframe = numframe + 1
+        except tf.errors.OutOfRangeError:
+            break
+    SalOut = np.zeros_like(GTall, np.uint8)
+    frameindex = 0
+    imageInput = Frameall[fameindex:(frameindex + framesnum + frame_skip), ...]
+    GTmapInput = GTall[frameindex:(frameindex + framesnum + frame_skip), ...]
+    imageInput = imageInput[np.newaxis, ...]
+    GTmapInput = GTmapInput[np.newaxis, ...]
+    np_predict = sess.run(preidct,
+                          feed_dict={inputs: imageInput, GroundTruth: GTmapInput,
+                                     RNNmask_in: mask_in, RNNmask_h: mask_h})
+    np_predict = np.uint8(np_predict * 255)
+    for i in range(frame_skip):
+        SalOut[i,...] = np_predict[0,0,...]
+    SalOut[frame_skip:frame_skip+framesnum,...] = np_predict[0,...]
+    frameindex = frameindex + 1
+    while frameindex + framesnum + frame_skip <= numframe:
+        imageInput = Frameall[fameindex:(frameindex + framesnum + frame_skip), ...]
+        GTmapInput = GTall[frameindex:(frameindex + framesnum + frame_skip), ...]
+        imageInput = imageInput[np.newaxis, ...]
+        GTmapInput = GTmapInput[np.newaxis, ...]
+        frameindex = frameindex + 1
+        np_predict = sess.run(preidct,
+                              feed_dict={inputs: imageInput, GroundTruth: GTmapInput,
+                                         RNNmask_in: mask_in, RNNmask_h: mask_h})
+        np_predict = np.uint8(np_predict * 255)
+        SalOut[frameindex -1 + frame_skip + framesnum, ...] = np_predict[0, -1, ...]
 
-            if batch_count == batch_size:
-                batch_count = 0
+    writer = imageio.get_writer(outdatasetpath + '/' + filename + '.avi', fps=30)
+
+
                 for j in range(batch_size):
                     for k in range(frame_num):
-                        np_predict = sess.run(preidct_op,
-                                              feed_dict={inputs: imageInput, GroundTruth: GTmapInput,
-                                                         RNNmask_in: mask_in, RNNmask_h: mask_h})
+
                         tempCC = cacCC(GTmapInput[j, k, :, :, 0], np_predict[j, k, :, :, 0])
                         tempKL = cacKL(GTmapInput[j, k, :, :, 0], np_predict[j, k, :, :, 0])
                         if not np.isnan(tempCC) and not np.isnan(tempKL):
@@ -394,32 +440,12 @@ def valid(filename):
                             sum_CC += tempCC
                             sum_KL += tempKL
 
-        except tf.errors.OutOfRangeError:
-            break
+
     if iter == 0:
         return 0, 10
     else:
         return sum_CC / iter, sum_KL / iter
 
-def getInput(frameIndex, videoSeq):
-    startIndex =  frameIndex - (concate_frame-1) - (skip_frame + 1) * (frame_num - 1)
-    vidBatch = []
-    for i in range(frame_num):
-        tempC = []
-        Index = startIndex + i * (skip_frame + 1)
-        for j in range(concate_frame):
-            tempCframe = videoSeq[Index + j, ...]
-            tempCframe = tempCframe[np.newaxis, ...]
-            if j == 0:
-                tempC = tempCframe
-            else:
-                tempC = np.concatenate((tempC,tempCframe),axis=-1)
-        if i == 0:
-            vidBatch = tempC
-        else:
-            vidBatch = np.concatenate((vidBatch, tempC), axis=0)
-    vidBatch = vidBatch[np.newaxis, ...]
-    return vidBatch
 
 def cacCC(gtsAnn, resAnn):
     fixationMap = gtsAnn - np.mean(gtsAnn)

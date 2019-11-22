@@ -38,7 +38,7 @@ Summary_dir = './summary'
 
 #
 
-def _BatchExtraction(VideoCap, GTCap, batchsize=batch_size, last_input=None, last_GT=None, video_start = True):
+def _BatchExtraction(VideoCap, GTCap, batchsize=batch_size, last_input=None, lastpreidct_op_GT=None, video_start = True):
     if video_start:
         _, frame = VideoCap.read()
         _, GTframe = GTCap.read()
