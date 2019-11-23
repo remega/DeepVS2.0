@@ -1,7 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="irc207" createEmptyFolders="true">
+  <component name="PublishConfigData" serverName="IRC401G4" createEmptyFolders="true">
     <serverData>
+      <paths name="Copy of project-level server 'Jarvis2'">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="IRC207G4">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/ReNew/DeepVS" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="IRC401G4">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/re/DeepVS" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Jarvis04">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Jarvis2">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="irc207">
         <serverdata>
           <mappings>

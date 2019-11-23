@@ -61,8 +61,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="358" column="39" selection-start-line="358" selection-start-column="39" selection-end-line="358" selection-end-column="39" />
+            <state relative-caret-position="394">
+              <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -117,7 +117,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>weight_decay</find>
       <find>conv2d</find>
       <find>iou</find>
       <find>5.74</find>
@@ -147,6 +146,7 @@
       <find>SaveFile</find>
       <find>Summary_dir</find>
       <find>preidct_op</find>
+      <find>eps</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -209,8 +209,8 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-11" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1489" />
     <option name="width" value="1523" />
     <option name="height" value="1941" />
   </component>
@@ -219,7 +219,20 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="DeepVS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DeepVS" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -416,12 +429,12 @@
       <workItem from="1574201094961" duration="7080000" />
       <workItem from="1574224613576" duration="485000" />
       <workItem from="1574225520522" duration="106000" />
-      <workItem from="1574362268105" duration="15008000" />
+      <workItem from="1574362268105" duration="17433000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27376000" />
+    <option name="totallyTimeSpent" value="29801000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -433,12 +446,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="0" width="870" height="1109" extended-state="0" />
+    <frame x="-7" y="-7" width="1728" height="1117" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.2862408" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28588516" />
       <window_info id="Structure" order="1" weight="0.24986118" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="File Transfer" visible="true" weight="0.3296146" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32924336" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49139366" weight="0.36033228" />
@@ -596,8 +610,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="358" column="39" selection-start-line="358" selection-start-column="39" selection-end-line="358" selection-end-column="39" />
+        <state relative-caret-position="394">
+          <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

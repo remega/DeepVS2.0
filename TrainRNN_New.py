@@ -345,20 +345,21 @@ def main():
         print('Left hours: %f.' % (hrleft / 3600))
         if epoch % 2 == 0:
             saver2.save(sess, SaveFile + modelname, global_step=epoch+1)
-            subsubres = os.path.join(subres, '%03d' % (epoch))
+            sub2res = os.path.join(subres, '%03d' % (epoch))
             if not os.path.isdir(subsubres):
                 os.mkdir(subsubres)
             for j in ValidData_index:
                 tfdir = Valid_list[j]
                 datasetname = tfdir.split('/')[1]
+                datasetname = datasetname[:-9]
                 sumKL = 0
                 sumCC = 0
                 count = 0
-                subsubres = os.path.join(subres, '%03d' % (epoch))
-                if not os.path.isdir(subsubres):
-                    os.mkdir(subsubres)
+                sub3res = os.path.join(sub2res, datasetname)
+                if not os.path.isdir(sub3res):
+                    os.mkdir(sub3res)
                 for validfile in glob.glob(tfdir + '*.tfrecords'):
-                    validCC, validKL = valid(validfile)
+                    validCC, validKL = valid(validfile, sub3res)
                     # print(validCC)
                     # print(validKL)
                     sumKL = sumKL + validKL
@@ -377,20 +378,12 @@ def main():
 
 def valid(filename, outdir):
     sess.run(iterator.initializer, feed_dict={filenames: filename})
-    sum_CC = 0
-    sum_KL = 0
-    sum_loss = 0
-    iter = 0
+    vdir = os.path.split(filename)[-1]
+    vname = vdir.split('.')[0]
     batch_size = 1
-    count = 0
-    GTBatch = []
-    imageBatch = []
-    imageInput = []
-    GTmapInput = []
+
     mask_in = np.ones([batch_size, mask_size[0], mask_size[1], maskChannel, 4, LSTMCellNum]) * (1 - dp_in)
     mask_h = np.ones([batch_size, mask_size[0], mask_size[1], maskChannel, 4, LSTMCellNum]) * (1 - dp_h)
-    batch_count = 0
-
     GTall, _, Frameall = sess.run([GTmap, shape, image])
     numframe = 1
     while True:
@@ -427,20 +420,20 @@ def valid(filename, outdir):
         np_predict = np.uint8(np_predict * 255)
         SalOut[frameindex -1 + frame_skip + framesnum, ...] = np_predict[0, -1, ...]
 
-    writer = imageio.get_writer(outdatasetpath + '/' + filename + '.avi', fps=30)
-
-
-                for j in range(batch_size):
-                    for k in range(frame_num):
-
-                        tempCC = cacCC(GTmapInput[j, k, :, :, 0], np_predict[j, k, :, :, 0])
-                        tempKL = cacKL(GTmapInput[j, k, :, :, 0], np_predict[j, k, :, :, 0])
-                        if not np.isnan(tempCC) and not np.isnan(tempKL):
-                            iter += 1
-                            sum_CC += tempCC
-                            sum_KL += tempKL
-
-
+    writer = imageio.get_writer(outdir + '/' + vname + '.avi', fps=30)
+    iter = 0
+    sum_CC = 0
+    sum_KL = 0
+    for indexFrame in range(SalOut.shape[0]):
+        assert np.sum(SalOut[indexFrame, ..., 0]) != 0
+        tempCC = cacCC(GTall[indexFrame, ..., 0], SalOut[indexFrame, ..., 0])
+        tempKL = cacKL(GTall[indexFrame, ..., 0], SalOut[indexFrame, ..., 0])
+        if not np.isnan(tempCC) and not np.isnan(tempKL):
+            iter += 1
+            sum_CC += tempCC
+            sum_KL += tempKL
+        writer.append_data(SalOut[indexFrame, ..., 0])
+    writer.close()
     if iter == 0:
         return 0, 10
     else:
@@ -448,6 +441,8 @@ def valid(filename, outdir):
 
 
 def cacCC(gtsAnn, resAnn):
+    gtsAnn=gtsAnn.astype(np.float32)
+    resAnn = resAnn.astype(np.float32)
     fixationMap = gtsAnn - np.mean(gtsAnn)
     if np.max(fixationMap) > 0:
         fixationMap = fixationMap / np.std(fixationMap)
@@ -458,6 +453,8 @@ def cacCC(gtsAnn, resAnn):
 
 
 def cacKL(gtsAnn, resAnn, eps=1e-7):
+    gtsAnn=gtsAnn.astype(np.float32)
+    resAnn = resAnn.astype(np.float32)
     if np.sum(gtsAnn) > 0:
         gtsAnn = gtsAnn / np.sum(gtsAnn)
     if np.sum(resAnn) > 0:
