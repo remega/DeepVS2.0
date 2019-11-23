@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="IRC401G4" createEmptyFolders="true">
+  <component name="PublishConfigData" autoUpload="Always" serverName="IRC401G4" createEmptyFolders="true">
     <serverData>
       <paths name="Copy of project-level server 'Jarvis2'">
         <serverdata>
@@ -52,5 +52,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>

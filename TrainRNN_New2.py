@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 import time
-import yolo_lstmconv2 as Network  # define the CNN
+import yolo_lstmconv3 as Network  # define the CNN
 import random
 from scipy.optimize import linprog
 import os
@@ -14,9 +14,9 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 # h_img = 480 #
 batch_size = 1
 framesnum = 16
-inputDim = 448
+inputDim = 224
 input_size = (inputDim, inputDim)
-outputDim = 112
+outputDim = 56
 output_size = (outputDim, outputDim)
 epoch_num = 20
 overlapframe = 10 #0~framesnum+frame_skip
@@ -43,8 +43,8 @@ Validfile3 = '../SFUTFrecords/'
 Valid_list = [Validfile1] + [Validfile2] + [Validfile3]
 # VideoNameFile = 'Traininglist.txt' #'Validationlist.txt'# 'Traininglist.txt'     #choose the data
 # Video_dir = 'G:\database\statistics\database'
-CheckpointFile_yolo = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
-CheckpointFile_flow = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
+# CheckpointFile_yolo = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
+# CheckpointFile_flow = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
 SaveFile = './model/'
 Summary_dir = './summary'
 res_dir = './res'
@@ -90,13 +90,13 @@ with tf.control_dependencies(extra_update_ops):
 predicts = net.out
 
 sess = tf.Session()
-saver = tf.train.Saver(net.yolofeatures_colllection)
-saver1 = tf.train.Saver(net.flowfeatures_colllection)
+# saver = tf.train.Saver(net.yolofeatures_colllection)
+# saver1 = tf.train.Saver(net.flowfeatures_colllection)
 
 init = tf.global_variables_initializer()
 sess.run(init)
-saver.restore(sess, CheckpointFile_yolo)
-saver1.restore(sess, CheckpointFile_flow)
+# saver.restore(sess, CheckpointFile_yolo)
+# saver1.restore(sess, CheckpointFile_flow)
 
 saver2 = tf.train.Saver(max_to_keep=15)
 summary_op = tf.summary.merge_all()

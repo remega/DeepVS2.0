@@ -27,6 +27,7 @@
     <SUITE FILE_PATH="coverage/ourcode$TrainDemo.coverage" NAME="TrainDemo Coverage Results" MODIFIED="1495092210025" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ourcode$test.coverage" NAME="test Coverage Results" MODIFIED="1499077031538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ourcode$yolo_tiny_net.coverage" NAME="yolo_tiny_net Coverage Results" MODIFIED="1489142238899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DeepVS$TrainRNN_New.coverage" NAME="TrainRNN_New Coverage Results" MODIFIED="1574473953423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ourcode$TestRNN_3.coverage" NAME="TestRNN-3 Coverage Results" MODIFIED="1523518052907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ourcode$TestCNN.coverage" NAME="TestCNN Coverage Results" MODIFIED="1524380264199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ourcode$testdemo.coverage" NAME="testdemo Coverage Results" MODIFIED="1496552025597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -58,14 +59,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
+            <state relative-caret-position="2470">
+              <caret line="130" selection-start-line="130" selection-end-line="130" selection-end-column="46" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="92" selection-start-line="92" selection-start-column="2" selection-end-line="93" selection-end-column="55" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BasicNet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="228" column="83" selection-start-line="228" selection-start-column="77" selection-end-line="228" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -82,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TrainRNN_sprase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="36" column="24" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="24" />
+            <state relative-caret-position="-153">
+              <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -91,8 +113,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TestRNN-demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="12" lean-forward="true" selection-start-column="12" selection-end-column="12" />
+            <state relative-caret-position="499">
+              <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="119" selection-end-column="53" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TestRNN_sparse.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="575">
+              <caret line="144" selection-start-line="144" selection-end-line="145" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -100,8 +134,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yolo_lstmconv2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="228" column="93" selection-start-line="228" selection-start-column="85" selection-end-line="228" selection-end-column="93" />
+            <state relative-caret-position="29">
+              <caret line="358" column="53" lean-forward="true" selection-start-line="358" selection-start-column="53" selection-end-line="358" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yolo_lstmconv3.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="57">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -117,19 +160,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>conv2d</find>
-      <find>iou</find>
-      <find>5.74</find>
-      <find>_beta2_power</find>
-      <find>resize</find>
-      <find>reuse</find>
       <find>expand</find>
       <find>print</find>
       <find>deconv</find>
       <find>_conv_linear</find>
       <find>tf.layers.batch_normalization</find>
       <find>inputDim</find>
-      <find>input_size</find>
       <find>start_time</find>
       <find>out_loss</find>
       <find>modelname</find>
@@ -139,14 +175,21 @@
       <find>mask_h</find>
       <find>_disloss</find>
       <find>Valid_list</find>
-      <find>predicts</find>
       <find>summary_op</find>
       <find>loss_op</find>
       <find>framenum</find>
       <find>SaveFile</find>
       <find>Summary_dir</find>
-      <find>preidct_op</find>
       <find>eps</find>
+      <find>fameindex</find>
+      <find>sess</find>
+      <find>GroundTruth</find>
+      <find>input</find>
+      <find>predicts</find>
+      <find>preidct_op</find>
+      <find>input_size</find>
+      <find>YOLO_tiny_inference</find>
+      <find>CheckpointFile_yolo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -155,7 +198,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/../tensorflow-yolo-python2.7/oldcode/yolo/net/net.py" />
         <option value="$PROJECT_DIR$/layer_def.py" />
         <option value="$PROJECT_DIR$/yolodemo.py" />
         <option value="$PROJECT_DIR$/TrainDemo2.py" />
@@ -191,7 +233,6 @@
         <option value="$PROJECT_DIR$/BasicNet.py" />
         <option value="$PROJECT_DIR$/TestCNN.py" />
         <option value="$PROJECT_DIR$/CNN_objectness.py" />
-        <option value="$PROJECT_DIR$/yolo_lstmconv2.py" />
         <option value="$PROJECT_DIR$/TestCNNsub" />
         <option value="$PROJECT_DIR$/yolo_lstmconv.py" />
         <option value="$PROJECT_DIR$/TrainCNN.py" />
@@ -205,11 +246,13 @@
         <option value="$PROJECT_DIR$/TestRNN-demo.py" />
         <option value="$PROJECT_DIR$/TestRNNDIEMSFU.py" />
         <option value="$PROJECT_DIR$/TrainRNN_sprase.py" />
+        <option value="$PROJECT_DIR$/yolo_lstmconv2.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New.py" />
+        <option value="$PROJECT_DIR$/TrainRNN_New2.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="1489" />
     <option name="width" value="1523" />
     <option name="height" value="1941" />
@@ -258,7 +301,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.TestRNNDIEMSFU">
+  <component name="RunManager" selected="Python.TrainRNN_New">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -345,7 +388,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Testsupervision" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="TrainRNN_New" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ourcode" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -358,7 +401,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testsupervision.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TrainRNN_New.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -401,17 +444,17 @@
     <list>
       <item itemvalue="Python.TestRNN" />
       <item itemvalue="Python.Testsubnet_img" />
-      <item itemvalue="Python.Testsupervision" />
       <item itemvalue="Python.tfrecoed_mit1003" />
       <item itemvalue="Python.TestRNNDIEMSFU" />
+      <item itemvalue="Python.TrainRNN_New" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.TrainRNN_New" />
         <item itemvalue="Python.TestRNNDIEMSFU" />
         <item itemvalue="Python.tfrecoed_mit1003" />
         <item itemvalue="Python.TestRNN" />
         <item itemvalue="Python.Testsubnet_img" />
-        <item itemvalue="Python.Testsupervision" />
       </list>
     </recent_temporary>
   </component>
@@ -429,12 +472,12 @@
       <workItem from="1574201094961" duration="7080000" />
       <workItem from="1574224613576" duration="485000" />
       <workItem from="1574225520522" duration="106000" />
-      <workItem from="1574362268105" duration="17433000" />
+      <workItem from="1574362268105" duration="22050000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29801000" />
+    <option name="totallyTimeSpent" value="34418000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -449,20 +492,20 @@
     <frame x="-7" y="-7" width="1728" height="1117" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28588516" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23325358" />
       <window_info id="Structure" order="1" weight="0.24986118" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="File Transfer" visible="true" weight="0.3296146" />
+      <window_info anchor="bottom" id="File Transfer" weight="0.3296146" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32924336" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49139366" weight="0.36033228" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39356178" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49139366" visible="true" weight="0.38742393" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4097363" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49805662" weight="0.32912722" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.4991671" side_tool="true" weight="0.23156802" />
       <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.50083286" weight="0.22326064" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49139366" weight="0.3759086" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49139366" weight="0.37525356" />
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
@@ -473,6 +516,31 @@
       <window_info anchor="right" id="Coverage" order="4" side_tool="true" />
       <window_info anchor="right" id="SciView" order="5" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28588516" />
+      <window_info id="Structure" order="1" weight="0.24986118" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="File Transfer" order="0" visible="true" weight="0.3296146" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32924336" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49139366" weight="0.36033228" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4097363" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49805662" weight="0.32912722" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.4991671" side_tool="true" weight="0.23156802" />
+      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.50083286" weight="0.22326064" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49139366" weight="0.37525356" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32981676" />
+      <window_info anchor="right" id="Coverage" order="4" side_tool="true" />
+      <window_info anchor="right" id="SciView" order="5" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -495,9 +563,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/site-packages/tensorflow/python/framework/ops.py" />
-    <entry file="file://$PROJECT_DIR$/TrainDemo_follow.py" />
-    <entry file="file://$PROJECT_DIR$/main_conv_lstm.py" />
     <entry file="file://$PROJECT_DIR$/translate.py" />
     <entry file="file://$PROJECT_DIR$/Backup.py" />
     <entry file="file://$PROJECT_DIR$/yolo_net.py" />
@@ -573,10 +638,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TestRNN_sparse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="144" selection-start-line="144" selection-end-line="145" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TrainRNN_sprase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestRNN-demo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="119" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BasicNet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="14" column="16" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+        <state relative-caret-position="192">
+          <caret line="228" column="83" selection-start-line="228" selection-start-column="77" selection-end-line="228" selection-end-column="83" />
         </state>
       </provider>
     </entry>
@@ -587,31 +676,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/yolo_lstmconv3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/yolo_lstmconv2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="228" column="93" selection-start-line="228" selection-start-column="85" selection-end-line="228" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestRNN-demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" lean-forward="true" selection-start-column="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TrainRNN_sprase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="36" column="24" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="24" />
+        <state relative-caret-position="29">
+          <caret line="358" column="53" lean-forward="true" selection-start-line="358" selection-start-column="53" selection-end-line="358" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="50" column="31" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="31" />
+        <state relative-caret-position="2470">
+          <caret line="130" selection-start-line="130" selection-end-line="130" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="92" selection-start-line="92" selection-start-column="2" selection-end-line="93" selection-end-column="55" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
