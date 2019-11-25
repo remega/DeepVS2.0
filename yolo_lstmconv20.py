@@ -213,10 +213,8 @@ class Net(BasicNet.BasicNet):
             salmask = self._normlized_0to1(Presalmap)
             salmask = salmask*(1-self.salmask_lb)+self.salmask_lb
             #salmask = tf.ones_like(salmask)
-            if self.version_flow == 1:
-                Flow_features = self.flownet_with_conv(frame, frame_gap, salmask)
-            else:
 
+            Flow_features = self.flownet_with_conv(frame, frame_gap, salmask)
             CNNout = self.Final_inference(Yolo_features, Flow_features)
             if self.startflagcnn == True:
                 self.flowfeatures_colllection = self.pretrain_var_collection
@@ -287,7 +285,10 @@ class Net(BasicNet.BasicNet):
           salmask = self._normlized_0to1(Presalmap)
           salmask = salmask * (1 - self.salmask_lb) + self.salmask_lb
           # salmask = tf.ones_like(salmask)
-          Flow_features = self.flownet_with_conv(frame, frame_gap, salmask)
+          if self.version_flow == 1:
+              Flow_features = self.flownet_with_conv(frame, frame_gap, salmask)
+          elif self.version_flow == 2:
+              Flow_features = self.flownet20(frame, frame_gap, salmask)
           CNNout = self.Final_inference(Yolo_features, Flow_features)
           if self.startflagcnn == True:
               self.flowfeatures_colllection = self.pretrain_var_collection

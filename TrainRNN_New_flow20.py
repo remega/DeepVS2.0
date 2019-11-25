@@ -7,7 +7,7 @@ from scipy.optimize import linprog
 import os
 import glob
 import imageio
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 # global w_img,h_img
 # w_img = 640 #
@@ -44,7 +44,7 @@ Valid_list = [Validfile1] + [Validfile2] + [Validfile3]
 # VideoNameFile = 'Traininglist.txt' #'Validationlist.txt'# 'Traininglist.txt'     #choose the data
 # Video_dir = 'G:\database\statistics\database'
 # CheckpointFile_yolo = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
-# CheckpointFile_flow = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
+CheckpointFile_flow = './model/pretrain/flownet-CS.ckpt-0'
 SaveFile = './model/'
 Summary_dir = './summary'
 res_dir = './res'
@@ -74,6 +74,7 @@ net.dp_h = dp_h
 net.lambdadis = dislambda
 net.disnum = numdis
 net.distype = dis_type
+net.version_flow = 2
 
 input = tf.placeholder(tf.float32, (batch_size, framesnum + frame_skip, input_size[0], input_size[1], 3))
 GroundTruth = tf.placeholder(tf.float32, (batch_size, framesnum + frame_skip, output_size[0], output_size[1], 1))
@@ -81,7 +82,7 @@ RNNmask_in = tf.placeholder(tf.float32, (batch_size, 28, 28, 128, 4 * 2))
 RNNmask_h = tf.placeholder(tf.float32, (batch_size, 28, 28, 128, 4 * 2))
 exloss = tf.placeholder(tf.float32)
 
-net.inference(input, GroundTruth, RNNmask_in, RNNmask_h)
+net.inferenceNew(input, GroundTruth, RNNmask_in, RNNmask_h)
 net._loss(exloss)
 loss_op = net.loss
 extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
@@ -92,11 +93,11 @@ predicts = net.out
 sess = tf.Session()
 # saver = tf.train.Saver(net.yolofeatures_colllection)
 # saver1 = tf.train.Saver(net.flowfeatures_colllection)
-
+saver1 = tf.train.Saver()
 init = tf.global_variables_initializer()
 sess.run(init)
 # saver.restore(sess, CheckpointFile_yolo)
-# saver1.restore(sess, CheckpointFile_flow)
+saver1.restore(sess, CheckpointFile_flow)
 
 saver2 = tf.train.Saver(max_to_keep=15)
 summary_op = tf.summary.merge_all()

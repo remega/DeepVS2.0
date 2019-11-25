@@ -30,6 +30,7 @@
     <SUITE FILE_PATH="coverage/DeepVS$TrainRNN_New.coverage" NAME="TrainRNN_New Coverage Results" MODIFIED="1574473953423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ourcode$TestRNN_3.coverage" NAME="TestRNN-3 Coverage Results" MODIFIED="1523518052907" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ourcode$TestCNN.coverage" NAME="TestCNN Coverage Results" MODIFIED="1524380264199" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/DeepVS$TrainRNN_New_flow20.coverage" NAME="TrainRNN_New_flow20 Coverage Results" MODIFIED="1574665301866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ourcode$testdemo.coverage" NAME="testdemo Coverage Results" MODIFIED="1496552025597" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ourcode$TrainDemo3_2.coverage" NAME="TrainDemo3_2 Coverage Results" MODIFIED="1493207099031" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ourcode$Findsupervision.coverage" NAME="Findsupervision Coverage Results" MODIFIED="1526097827788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -58,7 +59,7 @@
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5715334">
+    <splitter split-orientation="horizontal" split-proportion="0.41746148">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -70,11 +71,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/TrainRNN_New_flow20.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="171">
-                  <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+                  <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -82,11 +83,20 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/BasicNet.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="193">
+                  <caret line="153" column="38" selection-start-line="153" selection-start-column="15" selection-end-line="153" selection-end-column="38" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/yolo_lstmconv20.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+                <state relative-caret-position="3687">
+                  <caret line="210" column="76" selection-start-line="210" selection-start-column="53" selection-end-line="210" selection-end-column="76" />
                   <folding>
                     <element signature="e#0#38#0" expanded="true" />
                   </folding>
@@ -101,8 +111,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_cs/flownet_cs.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="426">
-                  <caret line="36" column="28" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="28" />
+                <state relative-caret-position="65">
+                  <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
                   <folding>
                     <element signature="e#0#27#0" expanded="true" />
                   </folding>
@@ -110,11 +120,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/flownetsrc/net.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
+                <state relative-caret-position="76">
+                  <caret line="4" selection-start-line="4" selection-start-column="2" selection-end-line="8" selection-end-column="47" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                   </folding>
@@ -122,11 +132,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_s/flownet_s.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="406">
-                  <caret line="50" column="49" lean-forward="true" selection-start-line="50" selection-start-column="15" selection-end-line="50" selection-end-column="49" />
+                <state relative-caret-position="665">
+                  <caret line="39" column="1" lean-forward="true" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -146,8 +156,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_c/flownet_c.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="421">
-                  <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
+                <state relative-caret-position="101">
+                  <caret line="14" column="37" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="37" />
                   <folding>
                     <element signature="e#0#27#0" expanded="true" />
                   </folding>
@@ -168,9 +178,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>deconv</find>
-      <find>_conv_linear</find>
-      <find>tf.layers.batch_normalization</find>
       <find>inputDim</find>
       <find>start_time</find>
       <find>out_loss</find>
@@ -197,7 +204,10 @@
       <find>YOLO_tiny_inference</find>
       <find>CheckpointFile_yolo</find>
       <find>model</find>
+      <find>startflagcnn</find>
       <find>trainable</find>
+      <find>pretrain_var_collection</find>
+      <find>flow_to_image</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -252,18 +262,18 @@
         <option value="$PROJECT_DIR$/TrainRNN_New.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New2.py" />
         <option value="$PROJECT_DIR$/flownetsrc/flownet_cs/flownet_cs.py" />
-        <option value="$PROJECT_DIR$/flownetsrc/net.py" />
         <option value="$PROJECT_DIR$/flownetsrc/flownet_c/flownet_c.py" />
         <option value="$PROJECT_DIR$/flownetsrc/flownet_s/flownet_s.py" />
-        <option value="$PROJECT_DIR$/TrainRNN_New_flow20.py" />
         <option value="$PROJECT_DIR$/yolo_lstmconv20.py" />
+        <option value="$PROJECT_DIR$/TrainRNN_New_flow20.py" />
+        <option value="$PROJECT_DIR$/flownetsrc/net.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="486" />
-    <option name="width" value="872" />
-    <option name="height" value="1110" />
+    <option name="x" value="1489" />
+    <option name="width" value="1523" />
+    <option name="height" value="1931" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -309,7 +319,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.TrainRNN_New">
+  <component name="RunManager" selected="Python.TrainRNN_New_flow20">
     <configuration default="true" type="tests" factoryName="Attests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -374,28 +384,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Testsubnet_img" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="ourcode" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Testsubnet_img.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="TrainRNN_New" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ourcode" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -410,6 +398,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TrainRNN_New.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TrainRNN_New_flow20" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="ourcode" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/TrainRNN_New_flow20.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -451,18 +461,18 @@
     </configuration>
     <list>
       <item itemvalue="Python.TestRNN" />
-      <item itemvalue="Python.Testsubnet_img" />
       <item itemvalue="Python.tfrecoed_mit1003" />
       <item itemvalue="Python.TestRNNDIEMSFU" />
       <item itemvalue="Python.TrainRNN_New" />
+      <item itemvalue="Python.TrainRNN_New_flow20" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.TrainRNN_New_flow20" />
         <item itemvalue="Python.TrainRNN_New" />
         <item itemvalue="Python.TestRNNDIEMSFU" />
         <item itemvalue="Python.tfrecoed_mit1003" />
         <item itemvalue="Python.TestRNN" />
-        <item itemvalue="Python.Testsubnet_img" />
       </list>
     </recent_temporary>
   </component>
@@ -481,12 +491,12 @@
       <workItem from="1574224613576" duration="485000" />
       <workItem from="1574225520522" duration="106000" />
       <workItem from="1574362268105" duration="23447000" />
-      <workItem from="1574635716670" duration="7767000" />
+      <workItem from="1574635716670" duration="11309000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43582000" />
+    <option name="totallyTimeSpent" value="47124000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -501,12 +511,12 @@
     <frame x="-7" y="-7" width="1728" height="1117" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18480861" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18480861" />
       <window_info id="Structure" order="1" weight="0.24986118" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32924336" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49139366" visible="true" weight="0.38742393" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49139366" visible="true" weight="0.38742393" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4097363" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -517,7 +527,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
-      <window_info anchor="bottom" id="File Transfer" order="13" visible="true" weight="0.3296146" />
+      <window_info anchor="bottom" id="File Transfer" order="13" weight="0.3296146" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -640,13 +650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BasicNet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4313">
-          <caret line="228" column="83" selection-start-line="228" selection-start-column="77" selection-end-line="228" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BasicConvLSTMCell.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1273">
@@ -704,53 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flownetsrc/net.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_c/flownet_c.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="36" column="43" lean-forward="true" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_cs/flownet_cs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="36" column="28" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_s/flownet_s.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="50" column="49" lean-forward="true" selection-start-line="50" selection-start-column="15" selection-end-line="50" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TrainRNN_New_flow20.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="40" lean-forward="true" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -767,12 +723,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_s/flownet_s.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="39" column="1" lean-forward="true" selection-start-line="39" selection-start-column="1" selection-end-line="39" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/yolo_lstmconv20.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="29" column="9" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+        <state relative-caret-position="3687">
+          <caret line="210" column="76" selection-start-line="210" selection-start-column="53" selection-end-line="210" selection-end-column="76" />
           <folding>
             <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BasicNet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="153" column="38" selection-start-line="153" selection-start-column="15" selection-end-line="153" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_cs/flownet_cs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="65">
+          <caret line="17" column="44" lean-forward="true" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TrainRNN_New_flow20.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_c/flownet_c.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="14" column="37" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flownetsrc/net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" selection-start-line="4" selection-start-column="2" selection-end-line="8" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
