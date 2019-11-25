@@ -1,7 +1,7 @@
 import tensorflow as tf
 
 _correlation_ops = tf.load_op_library(
-    tf.resource_loader.get_path_to_datafile("./ops/build/correlation.so"))
+    tf.resource_loader.get_path_to_datafile("ops/build/correlation.so"))
 
 
 def correlation(input_a, input_b, kernel_size, max_displacement, stride_1, stride_2, padding):

@@ -203,10 +203,10 @@ class Net(BasicNet.BasicNet):
                 self.startflagcnn = False
             output = self._normlized_0to1(deconv2)
             norm_GT = self._normlized(GTframe)
-            outdis = self._MapHistogram(output, self.disnum)
-            gtdis = self._MapHistogram(norm_GT, self.disnum)
-            outdis = tf.expand_dims(outdis, 1)
-            gtdis = tf.expand_dims(gtdis, 1)
+            # outdis = self._MapHistogram(output, self.disnum)
+            # gtdis = self._MapHistogram(norm_GT, self.disnum)
+            # outdis = tf.expand_dims(outdis, 1)
+            # gtdis = tf.expand_dims(gtdis, 1)
             norm_output = self._normlized(output)
             frame_loss = norm_GT * tf.log(self.eps + norm_GT / (norm_output + self.eps))
             frame_loss = tf.reduce_sum(frame_loss)
@@ -215,15 +215,15 @@ class Net(BasicNet.BasicNet):
             #print(output.get_shape().as_list())
             if indexframe == 0:
                 tempout = output
-                outdisBatch = outdis
-                gtdisBatch = gtdis
+                # outdisBatch = outdis
+                # gtdisBatch = gtdis
             else:
                 tempout = tf.concat([tempout, output], axis=1)
-                outdisBatch = tf.concat([outdisBatch, outdis], axis=1)
-                gtdisBatch = tf.concat([gtdisBatch, gtdis], axis=1)
+                # outdisBatch = tf.concat([outdisBatch, outdis], axis=1)
+                # gtdisBatch = tf.concat([gtdisBatch, gtdis], axis=1)
         self.out = tempout
-        self.outHis = outdisBatch
-        self.gtHis = gtdisBatch
+        # self.outHis = outdisBatch
+        # self.gtHis = gtdisBatch
 
 
   def inference_GRU(self, videoslides, GTs, mask_in, mask_h):  # videoslides: [batch framenum h w num_features]
@@ -341,15 +341,16 @@ class Net(BasicNet.BasicNet):
     loss_weight = tf.add_n(weight_loss)
     loss_kl = tf.get_collection('losses', scope=None)
     loss_kl = tf.add_n(loss_kl)/(self.framenum * self.batch_size)
-    loss_dis = self.lambdadis * self._disloss(self.outHis, self.gtHis, distype = self.distype ,inputloss = exloss) / (self.framenum * self.batch_size)
+    #loss_dis = self.lambdadis * self._disloss(self.outHis, self.gtHis, distype = self.distype ,inputloss = exloss) / (self.framenum * self.batch_size)
     # self.out = self.predict
     self.loss_gt = loss_kl
     self.loss_w = loss_weight
-    self.loss_sparse = loss_dis
-    self.loss = loss_kl + loss_weight + loss_dis
+    #self.loss_sparse = loss_dis
+    #self.loss = loss_kl + loss_weight + loss_dis
+    self.loss = loss_kl + loss_weight
     tf.summary.scalar('loss_weight', loss_weight)
     tf.summary.scalar('loss_kl', loss_kl)
-    tf.summary.scalar('loss_dis', loss_dis)
+    # tf.summary.scalar('loss_dis', loss_dis)
     tf.summary.scalar('loss_all', self.loss)
 
 
