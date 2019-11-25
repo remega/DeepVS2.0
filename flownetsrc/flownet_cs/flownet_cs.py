@@ -1,7 +1,7 @@
 from ..net import Net, Mode
 from ..flownet_c.flownet_c import FlowNetC
 from ..flownet_s.flownet_s import FlowNetS
-from ..flow_warp import flow_warp
+# from ..flow_warp import flow_warp
 import tensorflow as tf
 
 
@@ -18,21 +18,21 @@ class FlowNetCS(Net):
             net_c_predictions = self.net_c.model(inputs, trainable=False)
 
             # Perform flow warping (to move image B closer to image A based on flow prediction)
-            warped = flow_warp(inputs['input_b'], net_c_predictions['flow'])
+            #warped = flow_warp(inputs['input_b'], net_c_predictions['flow'])
 
             # Compute brightness error: sqrt(sum (input_a - warped)^2 over channels)
-            brightness_error = inputs['input_a'] - warped
-            brightness_error = tf.square(brightness_error)
-            brightness_error = tf.reduce_sum(brightness_error, keep_dims=True, axis=3)
-            brightness_error = tf.sqrt(brightness_error)
+            # brightness_error = inputs['input_a'] - warped
+            # brightness_error = tf.square(brightness_error)
+            # brightness_error = tf.reduce_sum(brightness_error, keep_dims=True, axis=3)
+            # brightness_error = tf.sqrt(brightness_error)
 
             # Gather all inputs to FlowNetS
             inputs_to_s = {
                 'input_a': inputs['input_a'],
                 'input_b': inputs['input_b'],
-                'warped': warped,
-                'flow': net_c_predictions['flow'] * 0.05,
-                'brightness_error': brightness_error,
+                # 'warped': warped,
+                'flow': net_c_predictions['flow'] * 0.05
+                # 'brightness_error': brightness_error,
             }
             out = self.net_s.model(inputs_to_s, trainable=trainable)
             return out

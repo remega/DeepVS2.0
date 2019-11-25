@@ -44,7 +44,7 @@ Valid_list = [Validfile1] + [Validfile2] + [Validfile3]
 # VideoNameFile = 'Traininglist.txt' #'Validationlist.txt'# 'Traininglist.txt'     #choose the data
 # Video_dir = 'G:\database\statistics\database'
 # CheckpointFile_yolo = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
-CheckpointFile_flow = './model/pretrain/flownet-CS.ckpt-0'
+# CheckpointFile_flow = './model/pretrain/flownet-CS.ckpt-0'
 SaveFile = './model/'
 Summary_dir = './summary'
 res_dir = './res'
@@ -93,11 +93,11 @@ predicts = net.out
 sess = tf.Session()
 # saver = tf.train.Saver(net.yolofeatures_colllection)
 # saver1 = tf.train.Saver(net.flowfeatures_colllection)
-saver1 = tf.train.Saver()
+
 init = tf.global_variables_initializer()
 sess.run(init)
 # saver.restore(sess, CheckpointFile_yolo)
-saver1.restore(sess, CheckpointFile_flow)
+# saver1.restore(sess, CheckpointFile_flow)
 
 saver2 = tf.train.Saver(max_to_keep=15)
 summary_op = tf.summary.merge_all()

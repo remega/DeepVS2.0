@@ -10,7 +10,7 @@ CC        = gcc -O2 -pthread
 CXX       = g++
 GPUCC     = nvcc
 CFLAGS    = -std=c++11 -I$(TF_INC) -I"$(CUDA_HOME)/include" -I"/usr/local" -DGOOGLE_CUDA=1
-GPUCFLAGS = -c
+GPUCFLAGS = -c -gencode=arch=compute_60,code=sm_60
 LFLAGS    = -pthread -shared -fPIC
 GPULFLAGS = -x cu -Xcompiler -fPIC
 CGPUFLAGS = -L$(CUDA_HOME)/lib -L$(CUDA_HOME)/lib64 -lcudart
@@ -56,8 +56,8 @@ ifeq ($(detected_OS),Linux)
 	CFLAGS += -D_MWAITXINTRIN_H_INCLUDED -D_FORCE_INLINES -D__STRICT_ANSI__ -D_GLIBCXX_USE_CXX11_ABI=0
 endif
 
-all:  correlation flowwarp
-#preprocessing downsample
+all:  downsample correlation flowwarp
+#preprocessing
 preprocessing:
 	$(GPUCC) -g $(CFLAGS) $(GPUCFLAGS) $(GPU_SRC_DATA_AUG) $(GPULFLAGS) $(GPUDEF) -o $(GPU_PROD_DATA_AUG)
 	$(GPUCC) -g $(CFLAGS) $(GPUCFLAGS) $(GPU_SRC_FLOW) $(GPULFLAGS) $(GPUDEF) -o $(GPU_PROD_FLOW)
