@@ -7,7 +7,7 @@ from scipy.optimize import linprog
 import os
 import glob
 import imageio
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 # global w_img,h_img
 # w_img = 640 #
@@ -31,7 +31,7 @@ tf.set_random_seed(730)
 frame_skip = 5
 dis_type = 'dualKL' # Wassers,dualWassers, KL,dualKL
 dislambda = 0.25
-modelname = 'Newlstmconv_prefinal_loss05_dp075_DualKL'
+modelname = 'Newlstmconv224_nopre_loss05_dp075_DualKL'
 
 TrainingFile1 = '../LEDOVTFrecords/training/'
 TrainingFile2 = '../LEDOVTFrecords/validation/'
@@ -230,8 +230,8 @@ def main():
         meanloss = losslist.mean()
         losslist = np.array([])
         print('Total time for this epoch is %f, average loss %f.' % (
-            duration, meanloss))
-        hrleft = ((epoch_num - epoch) / epoch) * (start_time1 - start_time0)
+            duration/3600, meanloss))
+        hrleft = ((epoch_num - epoch) / epoch) * duration
         print('Left hours: %f.' % (hrleft / 3600))
         if epoch % 2 == 0:
             saver2.save(sess, SaveFile + modelname, global_step=epoch+1)

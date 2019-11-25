@@ -230,8 +230,8 @@ def main():
         meanloss = losslist.mean()
         losslist = np.array([])
         print('Total time for this epoch is %f, average loss %f.' % (
-            duration, meanloss))
-        hrleft = ((epoch_num - epoch) / epoch) * (start_time1 - start_time0)
+            duration/3600, meanloss))
+        hrleft = ((epoch_num - epoch) / epoch) * duration
         print('Left hours: %f.' % (hrleft / 3600))
         if epoch % 2 == 0:
             saver2.save(sess, SaveFile + modelname, global_step=epoch+1)

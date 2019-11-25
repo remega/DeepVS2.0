@@ -62,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2470">
-              <caret line="130" selection-start-line="130" selection-end-line="130" selection-end-column="46" />
+            <state relative-caret-position="79">
+              <caret line="232" column="25" selection-start-line="232" selection-start-column="25" selection-end-line="232" selection-end-column="25" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -74,8 +74,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="92" selection-start-line="92" selection-start-column="2" selection-end-line="93" selection-end-column="55" />
+            <state relative-caret-position="146">
+              <caret line="232" column="25" selection-start-line="232" selection-start-column="25" selection-end-line="232" selection-end-column="25" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -86,7 +86,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BasicNet.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
+            <state relative-caret-position="4313">
               <caret line="228" column="83" selection-start-line="228" selection-start-column="77" selection-end-line="228" selection-end-column="83" />
             </state>
           </provider>
@@ -95,7 +95,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BasicConvLSTMCell.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="890">
+            <state relative-caret-position="1273">
               <caret line="67" column="26" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
             </state>
           </provider>
@@ -104,8 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TrainRNN_sprase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-153">
-              <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+            <state relative-caret-position="171">
+              <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -113,7 +113,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TestRNN-demo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="499">
+            <state relative-caret-position="2071">
               <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="119" selection-end-column="53" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -125,7 +125,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TestRNN_sparse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
+            <state relative-caret-position="2603">
               <caret line="144" selection-start-line="144" selection-end-line="145" selection-end-column="53" />
             </state>
           </provider>
@@ -134,8 +134,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/yolo_lstmconv2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="29">
-              <caret line="358" column="53" lean-forward="true" selection-start-line="358" selection-start-column="53" selection-end-line="358" selection-end-column="53" />
+            <state relative-caret-position="6669">
+              <caret line="358" column="53" selection-start-line="358" selection-start-column="53" selection-end-line="358" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -144,7 +144,7 @@
         <entry file="file://$PROJECT_DIR$/yolo_lstmconv3.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="57">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
             </state>
           </provider>
         </entry>
@@ -253,9 +253,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="1489" />
-    <option name="width" value="1523" />
-    <option name="height" value="1941" />
+    <option name="x" value="486" />
+    <option name="width" value="872" />
+    <option name="height" value="1110" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -280,7 +280,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../autotransform" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tensorflow-yolov3-master" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -472,12 +472,13 @@
       <workItem from="1574201094961" duration="7080000" />
       <workItem from="1574224613576" duration="485000" />
       <workItem from="1574225520522" duration="106000" />
-      <workItem from="1574362268105" duration="22050000" />
+      <workItem from="1574362268105" duration="23447000" />
+      <workItem from="1574635716670" duration="676000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34418000" />
+    <option name="totallyTimeSpent" value="36491000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -492,10 +493,9 @@
     <frame x="-7" y="-7" width="1728" height="1117" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23325358" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11662679" />
       <window_info id="Structure" order="1" weight="0.24986118" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="File Transfer" weight="0.3296146" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32924336" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49139366" visible="true" weight="0.38742393" />
@@ -509,6 +509,7 @@
       <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
+      <window_info anchor="bottom" id="File Transfer" order="13" visible="true" weight="0.3296146" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -638,23 +639,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestRNN_sparse.py">
+    <entry file="file://$PROJECT_DIR$/BasicNet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="144" selection-start-line="144" selection-end-line="145" selection-end-column="53" />
+        <state relative-caret-position="4313">
+          <caret line="228" column="83" selection-start-line="228" selection-start-column="77" selection-end-line="228" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BasicConvLSTMCell.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1273">
+          <caret line="67" column="26" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TrainRNN_sprase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-153">
-          <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+        <state relative-caret-position="171">
+          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TestRNN-demo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
+        <state relative-caret-position="2071">
           <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="119" selection-end-column="53" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -662,38 +670,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BasicNet.py">
+    <entry file="file://$PROJECT_DIR$/TestRNN_sparse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="228" column="83" selection-start-line="228" selection-start-column="77" selection-end-line="228" selection-end-column="83" />
+        <state relative-caret-position="2603">
+          <caret line="144" selection-start-line="144" selection-end-line="145" selection-end-column="53" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BasicConvLSTMCell.py">
+    <entry file="file://$PROJECT_DIR$/yolo_lstmconv2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="890">
-          <caret line="67" column="26" selection-start-line="67" selection-start-column="26" selection-end-line="67" selection-end-column="26" />
+        <state relative-caret-position="6669">
+          <caret line="358" column="53" selection-start-line="358" selection-start-column="53" selection-end-line="358" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/yolo_lstmconv3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yolo_lstmconv2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="358" column="53" lean-forward="true" selection-start-line="358" selection-start-column="53" selection-end-line="358" selection-end-column="53" />
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2470">
-          <caret line="130" selection-start-line="130" selection-end-line="130" selection-end-column="46" />
+        <state relative-caret-position="79">
+          <caret line="232" column="25" selection-start-line="232" selection-start-column="25" selection-end-line="232" selection-end-column="25" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -702,8 +703,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="92" selection-start-line="92" selection-start-column="2" selection-end-line="93" selection-end-column="55" />
+        <state relative-caret-position="146">
+          <caret line="232" column="25" selection-start-line="232" selection-start-column="25" selection-end-line="232" selection-end-column="25" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
