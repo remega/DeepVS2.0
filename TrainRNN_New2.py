@@ -396,7 +396,7 @@ def valid(filename, outdir):
             batch_count = batch_count + 1
         if batch_count == batch_size:
             np_predict = sess.run(predicts,
-                                  feed_dict={input: imageInput, GroundTruth: GTmapInput,
+                                  feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch,
                                              RNNmask_in: mask_in, RNNmask_h: mask_h})
             np_predict = np.uint8(np_predict * 255)
             SalOut[(frameindex + frame_skip + framesnum - batch_size):(frameindex + frame_skip + framesnum), ...] = np_predict[:, -1, ...]

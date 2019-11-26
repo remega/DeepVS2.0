@@ -7,12 +7,12 @@ from scipy.optimize import linprog
 import os
 import glob
 import imageio
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
 # global w_img,h_img
 # w_img = 640 #
 # h_img = 480 #
-batch_size = 4
+batch_size = 3
 framesnum = 16
 inputDim = 224
 input_size = (inputDim, inputDim)
@@ -397,7 +397,7 @@ def valid(filename, outdir):
             batch_count = batch_count + 1
         if batch_count == batch_size:
             np_predict = sess.run(predicts,
-                                  feed_dict={input: imageInput, GroundTruth: GTmapInput,
+                                  feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch,
                                              RNNmask_in: mask_in, RNNmask_h: mask_h})
             np_predict = np.uint8(np_predict * 255)
             SalOut[(frameindex + frame_skip + framesnum - batch_size):(frameindex + frame_skip + framesnum), ...] = np_predict[:, -1, ...]
