@@ -31,7 +31,7 @@ tf.set_random_seed(730)
 frame_skip = 5
 dis_type = 'dualKL' # Wassers,dualWassers, KL,dualKL
 dislambda = 0.25
-modelname = 'Newlstmconv_prefinal_loss05_dp075_DualKL'
+modelname = 'Newlstmconv_prefinal_loss05_dp075'
 
 TrainingFile1 = '../LEDOVTFrecords/training/'
 TrainingFile2 = '../LEDOVTFrecords/validation/'
@@ -231,7 +231,7 @@ def main():
         losslist = np.array([])
         print('Total time for this epoch is %f, average loss %f.' % (
             duration/3600, meanloss))
-        hrleft = ((epoch_num - epoch) / epoch) * duration
+        hrleft = ((epoch_num - epoch - 1) / (epoch+1)) * duration
         print('Left hours: %f.' % (hrleft / 3600))
         if epoch % 2 == 0:
             saver2.save(sess, SaveFile + modelname, global_step=epoch+1)

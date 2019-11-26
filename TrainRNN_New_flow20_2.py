@@ -7,7 +7,7 @@ from scipy.optimize import linprog
 import os
 import glob
 import imageio
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 # global w_img,h_img
 # w_img = 640 #
@@ -31,7 +31,8 @@ tf.set_random_seed(730)
 frame_skip = 5
 dis_type = 'dualKL' # Wassers,dualWassers, KL,dualKL
 dislambda = 0.25
-modelname = 'Newlstmconv224_nopre_loss05_dp075_flow2c'
+flowversion = '2s'
+modelname = 'Newlstmconv224_nopre_loss05_dp075_flow2s'
 
 TrainingFile1 = '../LEDOVTFrecords/training/'
 TrainingFile2 = '../LEDOVTFrecords/validation/'
@@ -74,7 +75,7 @@ net.dp_h = dp_h
 net.lambdadis = dislambda
 net.disnum = numdis
 net.distype = dis_type
-net.version_flow = '2c'
+net.version_flow = flowversion
 
 input = tf.placeholder(tf.float32, (batch_size, framesnum + frame_skip, input_size[0], input_size[1], 3))
 GroundTruth = tf.placeholder(tf.float32, (batch_size, framesnum + frame_skip, output_size[0], output_size[1], 1))
@@ -232,7 +233,7 @@ def main():
         losslist = np.array([])
         print('Total time for this epoch is %f, average loss %f.' % (
             duration/3600, meanloss))
-        hrleft = ((epoch_num - epoch) / epoch) * duration
+        hrleft = ((epoch_num - epoch - 1) / (epoch + 1)) * duration
         print('Left hours: %f.' % (hrleft / 3600))
         if epoch % 2 == 0:
             saver2.save(sess, SaveFile + modelname, global_step=epoch+1)
