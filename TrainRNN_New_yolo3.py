@@ -1,22 +1,22 @@
 import numpy as np
 import tensorflow as tf
 import time
-import yolo_lstmconv2 as Network  # define the CNN
+import yolo_lstmconv20 as Network  # define the CNN
 import random
 from scipy.optimize import linprog
 import os
 import glob
 import imageio
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 # global w_img,h_img
 # w_img = 640 #
 # h_img = 480 #
 batch_size = 4
 framesnum = 16
-inputDim = 448
+inputDim = 224
 input_size = (inputDim, inputDim)
-outputDim = 112
+outputDim = 56
 output_size = (outputDim, outputDim)
 epoch_num = 20
 overlapframe = 10 #0~framesnum+frame_skip
@@ -31,7 +31,9 @@ tf.set_random_seed(730)
 frame_skip = 5
 dis_type = 'dualKL' # Wassers,dualWassers, KL,dualKL
 dislambda = 0.25
-modelname = 'Newlstmconv_prefinal_loss05_dp075'
+flowversion = '1'
+yoloversion = 3
+modelname = 'Newlstmconv224_nopre_loss05_dp075_yolo3'
 
 TrainingFile1 = '../LEDOVTFrecords/training/'
 TrainingFile2 = '../LEDOVTFrecords/validation/'
@@ -43,8 +45,8 @@ Validfile3 = '../SFUTFrecords/'
 Valid_list = [Validfile1] + [Validfile2] + [Validfile3]
 # VideoNameFile = 'Traininglist.txt' #'Validationlist.txt'# 'Traininglist.txt'     #choose the data
 # Video_dir = 'G:\database\statistics\database'
-CheckpointFile_yolo = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
-CheckpointFile_flow = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
+# CheckpointFile_yolo = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
+# CheckpointFile_flow = './model/pretrain/flownet-CS.ckpt-0'
 SaveFile = './model/'
 Summary_dir = './summary'
 res_dir = './res'
@@ -74,14 +76,15 @@ net.dp_h = dp_h
 net.lambdadis = dislambda
 net.disnum = numdis
 net.distype = dis_type
-
+net.version_flow = flowversion
+net.version_yolo = yoloversion
 input = tf.placeholder(tf.float32, (batch_size, framesnum + frame_skip, input_size[0], input_size[1], 3))
 GroundTruth = tf.placeholder(tf.float32, (batch_size, framesnum + frame_skip, output_size[0], output_size[1], 1))
 RNNmask_in = tf.placeholder(tf.float32, (batch_size, 28, 28, 128, 4 * 2))
 RNNmask_h = tf.placeholder(tf.float32, (batch_size, 28, 28, 128, 4 * 2))
 exloss = tf.placeholder(tf.float32)
 
-net.inference(input, GroundTruth, RNNmask_in, RNNmask_h)
+net.inferenceNew(input, GroundTruth, RNNmask_in, RNNmask_h)
 net._loss(exloss)
 loss_op = net.loss
 extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
@@ -92,14 +95,13 @@ predicts = net.out
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
 sess = tf.Session(config=config)
-
-saver = tf.train.Saver(net.yolofeatures_colllection)
-saver1 = tf.train.Saver(net.flowfeatures_colllection)
+# saver = tf.train.Saver(net.yolofeatures_colllection)
+# saver1 = tf.train.Saver(net.flowfeatures_colllection)
 
 init = tf.global_variables_initializer()
 sess.run(init)
-saver.restore(sess, CheckpointFile_yolo)
-saver1.restore(sess, CheckpointFile_flow)
+# saver.restore(sess, CheckpointFile_yolo)
+# saver1.restore(sess, CheckpointFile_flow)
 
 saver2 = tf.train.Saver(max_to_keep=15)
 summary_op = tf.summary.merge_all()
@@ -208,7 +210,7 @@ def main():
                     mask_in = np.concatenate((mask_in, mask_in_s), axis=0)
                     mask_h = np.concatenate((mask_h, mask_h_s), axis=0)
                     batch_count = batch_count + 1
-                if batch_count ==  batch_size:
+                if batch_count == batch_size:
                         batch_count = 0
                         iter += 1
                         _, loss = sess.run([train_op, loss_op],  feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch, RNNmask_in: mask_in, RNNmask_h: mask_h, exloss:0})
@@ -234,7 +236,7 @@ def main():
         losslist = np.array([])
         print('Total time for this epoch is %f, average loss %f.' % (
             duration/3600, meanloss))
-        hrleft = ((epoch_num - epoch - 1) / (epoch+1)) * duration
+        hrleft = ((epoch_num - epoch - 1) / (epoch + 1)) * duration
         print('Left hours: %f.' % (hrleft / 3600))
         if epoch % 2 == 0:
             saver2.save(sess, SaveFile + modelname, global_step=epoch+1)

@@ -65,34 +65,41 @@ class Net(BasicNet.BasicNet):
           input_data = common.convolutional(input_data, filters_shape=(3, 3, 64, 128),
                                             trainable=cnntrainable, name='conv4', downsample=True) #56
 
-          for i in range(2):
+          for i in range(1):
               input_data = common.residual_block(input_data, 128, 64, 128, trainable=cnntrainable,
                                                  name='residual%d' % (i + 1))
 
-          input_data = common.convolutional(input_data, filters_shape=(3, 3, 128, 256),
+          conv_7 = common.convolutional(input_data, filters_shape=(3, 3, 128, 256),
                                             trainable=cnntrainable, name='conv9', downsample=True) # 28
 
-          for i in range(8):
-              input_data = common.residual_block(input_data, 256, 128, 256, trainable=cnntrainable,
-                                                 name='residual%d' % (i + 3))
+          for i in range(4):
+              input_data = common.residual_block(conv_7, 256, 128, 256, trainable=cnntrainable,
+                                                 name='residual%d' % (i + 3))           #14
 
-          route_1 = input_data
-          input_data = common.convolutional(input_data, filters_shape=(3, 3, 256, 512),
+          conv_9 = common.convolutional(input_data, filters_shape=(3, 3, 256, 512),
                                             trainable=cnntrainable, name='conv26', downsample=True)
 
-          for i in range(8):
-              input_data = common.residual_block(input_data, 512, 256, 512, trainable=cnntrainable,
+          for i in range(4):
+              input_data = common.residual_block(conv_9, 512, 256, 512, trainable=cnntrainable,
                                                  name='residual%d' % (i + 11))
 
-          route_2 = input_data
-          input_data = common.convolutional(input_data, filters_shape=(3, 3, 512, 1024),
-                                            trainable=cnntrainable, name='conv43', downsample=True)
+          conv_11 = common.convolutional(input_data, filters_shape=(3, 3, 512, 1024),
+                                            trainable=cnntrainable, name='conv43', downsample=True) #7
 
-          for i in range(4):
-              input_data = common.residual_block(input_data, 1024, 512, 1024, trainable=cnntrainable,
-                                                 name='residual%d' % (i + 19))
 
-          return route_1, route_2, input_data
+
+          conv_11_2 = self.conv_layer('conv_11_2', conv_11, 1, 128, stride=1, pretrain=cnnpretrain,
+                                      trainable=cnntrainable)
+          conv_9_2 = self.conv_layer('conv_9_2', conv_9, 1, 128, stride=1, pretrain=cnnpretrain, trainable=cnntrainable)
+          conv_7_2 = self.conv_layer('conv_7_2', conv_7, 1, 128, stride=1, pretrain=False)
+          tempsize = conv_7.get_shape().as_list()
+          newconv_7 = tf.image.resize_images(conv_7_2, [tempsize[1], tempsize[2]])
+          newconv_9 = tf.image.resize_images(conv_9_2, [tempsize[1], tempsize[2]])
+          newconv_11_2 = tf.image.resize_images(conv_11_2, [tempsize[1], tempsize[2]])
+          FeatureMap = tf.concat([newconv_7, newconv_9, newconv_11_2], axis=3)
+          weight_mask = tf.constant(self.get_centermask(FeatureMap.get_shape().as_list()), dtype=FeatureMap.dtype)
+          FeatureMap = FeatureMap * weight_mask
+          return FeatureMap
 
 
   def YOLO_tiny_inference(self, images):  # pre128
@@ -261,7 +268,9 @@ class Net(BasicNet.BasicNet):
             #print(indexframe+self.gapnum)
             frame_gap = videoslides[:, indexframe+self.gapnum, ...]
             GTframe = GTs[:, indexframe, ...]
+
             Yolo_features = self.YOLO_tiny_inference(frame)
+
             Presalmap = self.Coarse_salmap(Yolo_features)
             if self.startflagcnn == True:
                 self.yolofeatures_colllection = self.pretrain_var_collection
@@ -333,7 +342,10 @@ class Net(BasicNet.BasicNet):
           # print(indexframe+self.gapnum)
           frame_gap = videoslides[:, indexframe + self.gapnum, ...]
           GTframe = GTs[:, indexframe, ...]
-          Yolo_features = self.YOLO_tiny_inference(frame)
+          if self.version_flow == 1:
+              Yolo_features = self.YOLO_tiny_inference(frame)
+          else:
+              Yolo_features = self.YOLO_v3(frame)
           Presalmap = self.Coarse_salmap(Yolo_features)
           if self.startflagcnn == True:
               self.yolofeatures_colllection = self.pretrain_var_collection

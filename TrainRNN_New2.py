@@ -12,7 +12,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 # global w_img,h_img
 # w_img = 640 #
 # h_img = 480 #
-batch_size = 1
+batch_size = 4
 framesnum = 16
 inputDim = 224
 input_size = (inputDim, inputDim)
@@ -89,7 +89,9 @@ with tf.control_dependencies(extra_update_ops):
     train_op = net._train()
 predicts = net.out
 
-sess = tf.Session()
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.Session(config=config)
 # saver = tf.train.Saver(net.yolofeatures_colllection)
 # saver1 = tf.train.Saver(net.flowfeatures_colllection)
 

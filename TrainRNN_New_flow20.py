@@ -12,7 +12,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 # global w_img,h_img
 # w_img = 640 #
 # h_img = 480 #
-batch_size = 1
+batch_size = 4
 framesnum = 16
 inputDim = 224
 input_size = (inputDim, inputDim)
@@ -91,7 +91,9 @@ with tf.control_dependencies(extra_update_ops):
     train_op = net._train()
 predicts = net.out
 
-sess = tf.Session()
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+sess = tf.Session(config=config)
 # saver = tf.train.Saver(net.yolofeatures_colllection)
 # saver1 = tf.train.Saver(net.flowfeatures_colllection)
 
@@ -207,7 +209,7 @@ def main():
                     mask_in = np.concatenate((mask_in, mask_in_s), axis=0)
                     mask_h = np.concatenate((mask_h, mask_h_s), axis=0)
                     batch_count = batch_count + 1
-                if batch_count ==  batch_size:
+                if batch_count == batch_size:
                         batch_count = 0
                         iter += 1
                         _, loss = sess.run([train_op, loss_op],  feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch, RNNmask_in: mask_in, RNNmask_h: mask_h, exloss:0})
