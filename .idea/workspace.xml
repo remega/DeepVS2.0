@@ -65,7 +65,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="57">
+                <state relative-caret-position="627">
                   <caret line="33" column="46" lean-forward="true" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
@@ -77,8 +77,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="38">
-                  <caret line="33" column="46" lean-forward="true" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+                <state relative-caret-position="505">
+                  <caret line="83" column="16" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -98,11 +98,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/TrainRNN_New_flow20_2.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="171">
-                  <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+                <state relative-caret-position="209">
+                  <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -111,10 +111,19 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/common.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="418">
+                  <caret line="22" column="65" lean-forward="true" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/yolo_lstmconv20.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="812">
-                  <caret line="267" column="29" lean-forward="true" selection-start-line="267" selection-start-column="29" selection-end-line="267" selection-end-column="29" />
+                <state relative-caret-position="1972">
+                  <caret line="225" column="48" lean-forward="true" selection-start-line="225" selection-start-column="48" selection-end-line="225" selection-end-column="48" />
                   <folding>
                     <element signature="e#0#38#0" expanded="true" />
                   </folding>
@@ -147,11 +156,14 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_sd/flownet_sd.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="57">
-                  <caret line="3" selection-start-line="3" selection-end-line="6" />
+                <state relative-caret-position="494">
+                  <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+                  <folding>
+                    <element signature="e#0#27#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -168,11 +180,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_s/flownet_s.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="19">
-                  <caret line="29" column="69" lean-forward="true" selection-start-line="29" selection-start-column="69" selection-end-line="29" selection-end-column="69" />
+                <state relative-caret-position="399">
+                  <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
                   <folding>
                     <element signature="e#0#27#0" expanded="true" />
                   </folding>
@@ -183,8 +195,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_c/flownet_c.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret lean-forward="true" />
+                <state relative-caret-position="285">
+                  <caret line="59" column="58" selection-start-line="59" selection-start-column="58" selection-end-line="59" selection-end-column="58" />
                   <folding>
                     <element signature="e#0#27#0" expanded="true" />
                   </folding>
@@ -243,12 +255,12 @@
       <find>src</find>
       <find>flow_to_image</find>
       <find>trainable</find>
+      <find>loss_sparse</find>
+      <find>outHis</find>
+      <find>pretrain_var_collection</find>
+      <find>start_time1</find>
       <find>downsample</find>
       <find>correlation</find>
-      <find>loss_sparse</find>
-      <find>pretrain_var_collection</find>
-      <find>outHis</find>
-      <find>start_time1</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -299,19 +311,19 @@
         <option value="$PROJECT_DIR$/yolo_lstmconv2.py" />
         <option value="$PROJECT_DIR$/yolo_lstmconv3.py" />
         <option value="$PROJECT_DIR$/Makefile" />
-        <option value="$PROJECT_DIR$/flownetsrc/flownet_s/flownet_s.py" />
         <option value="$PROJECT_DIR$/flownetsrc/flownet_cs/flownet_cs.py" />
-        <option value="$PROJECT_DIR$/flownetsrc/flownet_c/flownet_c.py" />
-        <option value="$PROJECT_DIR$/flownetsrc/flownet_sd/flownet_sd.py" />
-        <option value="$PROJECT_DIR$/yolo_lstmconv20.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New_flow20.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New.py" />
-        <option value="$PROJECT_DIR$/TrainRNN_New2.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New_flow20_2.py" />
+        <option value="$PROJECT_DIR$/TrainRNN_New2.py" />
+        <option value="$PROJECT_DIR$/flownetsrc/flownet_sd/flownet_sd.py" />
+        <option value="$PROJECT_DIR$/flownetsrc/flownet_s/flownet_s.py" />
+        <option value="$PROJECT_DIR$/flownetsrc/flownet_c/flownet_c.py" />
+        <option value="$PROJECT_DIR$/yolo_lstmconv20.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1489" />
     <option name="width" value="1523" />
     <option name="height" value="1931" />
@@ -328,30 +340,6 @@
             <path>
               <item name="DeepVS" type="b2602c69:ProjectViewProjectNode" />
               <item name="DeepVS" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DeepVS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DeepVS" type="462c0819:PsiDirectoryNode" />
-              <item name="flownetsrc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DeepVS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DeepVS" type="462c0819:PsiDirectoryNode" />
-              <item name="flownetsrc" type="462c0819:PsiDirectoryNode" />
-              <item name="flownet_sd" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DeepVS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DeepVS" type="462c0819:PsiDirectoryNode" />
-              <item name="flownetsrc" type="462c0819:PsiDirectoryNode" />
-              <item name="ops" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DeepVS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DeepVS" type="462c0819:PsiDirectoryNode" />
-              <item name="flownetsrc" type="462c0819:PsiDirectoryNode" />
-              <item name="ops" type="462c0819:PsiDirectoryNode" />
-              <item name="correlation" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -556,12 +544,12 @@
       <workItem from="1574224613576" duration="485000" />
       <workItem from="1574225520522" duration="106000" />
       <workItem from="1574362268105" duration="23447000" />
-      <workItem from="1574635716670" duration="24967000" />
+      <workItem from="1574635716670" duration="27239000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60782000" />
+    <option name="totallyTimeSpent" value="63054000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -574,7 +562,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1728" height="1117" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18480861" />
       <window_info id="Structure" order="1" weight="0.24986118" />
@@ -647,7 +634,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/TrainDemo.py" />
     <entry file="file://$PROJECT_DIR$/../motionextractor_2.py" />
     <entry file="file://$PROJECT_DIR$/TestRNN-3.py" />
     <entry file="file://$PROJECT_DIR$/yolo_lstmconv_git.py" />
@@ -813,67 +799,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_s/flownet_s.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="29" column="69" lean-forward="true" selection-start-line="29" selection-start-column="69" selection-end-line="29" selection-end-column="69" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_c/flownet_c.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_sd/flownet_sd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" selection-start-line="3" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yolo_lstmconv20.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="812">
-          <caret line="267" column="29" lean-forward="true" selection-start-line="267" selection-start-column="29" selection-end-line="267" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yolo_lstmconv2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="341" column="53" lean-forward="true" selection-start-line="341" selection-start-column="53" selection-end-line="341" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="33" column="46" lean-forward="true" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="33" column="46" lean-forward="true" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -887,12 +816,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TrainRNN_New_flow20_2.py">
+    <entry file="file://$PROJECT_DIR$/common.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
+        <state relative-caret-position="418">
+          <caret line="22" column="65" lean-forward="true" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="33" column="46" lean-forward="true" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="83" column="16" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TrainRNN_New_flow20_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" column="20" lean-forward="true" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_sd/flownet_sd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_c/flownet_c.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="59" column="58" selection-start-line="59" selection-start-column="58" selection-end-line="59" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flownetsrc/flownet_s/flownet_s.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="49" column="21" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yolo_lstmconv20.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1972">
+          <caret line="225" column="48" lean-forward="true" selection-start-line="225" selection-start-column="48" selection-end-line="225" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 import time
-import yolo_lstmconv3 as Network  # define the CNN
+import yolo_lstmconv20 as Network  # define the CNN
 import random
 from scipy.optimize import linprog
 import os
@@ -81,7 +81,7 @@ RNNmask_in = tf.placeholder(tf.float32, (batch_size, 28, 28, 128, 4 * 2))
 RNNmask_h = tf.placeholder(tf.float32, (batch_size, 28, 28, 128, 4 * 2))
 exloss = tf.placeholder(tf.float32)
 
-net.inference(input, GroundTruth, RNNmask_in, RNNmask_h)
+net.inferenceNew(input, GroundTruth, RNNmask_in, RNNmask_h)
 net._loss(exloss)
 loss_op = net.loss
 extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)

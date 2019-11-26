@@ -47,8 +47,8 @@ class FlowNetS(Net):
                         conv5 = slim.conv2d(pad(conv4_1), stride=2, scope='conv5')
                         conv5_1 = slim.conv2d(pad(conv5), scope='conv5_1')
                     conv6 = slim.conv2d(pad(conv5_1), 1024, 3, stride=2, scope='conv6')
-                    conv6_1 = slim.conv2d(pad(conv6), 1024, 3, scope='conv6_1')
-        return conv3_1, conv4_1, conv5_1, conv6_1
+                    #conv6_1 = slim.conv2d(pad(conv6), 1024, 3, scope='conv6_1')
+        return conv3_1, conv4_1, conv5_1#, conv6_1
                     # """ START: Refinement Network """
                     # with slim.arg_scope([slim.conv2d_transpose], biases_initializer=None):
                     #     predict_flow6 = slim.conv2d(pad(conv6_1), 2, 3,

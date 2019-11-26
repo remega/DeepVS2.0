@@ -37,8 +37,8 @@ class FlowNetSD(Net):
                     conv4_1 = slim.conv2d(pad(conv4), 512, 3, scope='conv4_1')
                     conv5 = slim.conv2d(pad(conv4_1), 512, 3, stride=2, scope='conv5')
                     conv5_1 = slim.conv2d(pad(conv5), 512, 3, scope='conv5_1')
-                    conv6 = slim.conv2d(pad(conv5_1), 1024, 3, stride=2, scope='conv6')
-                    conv6_1 = slim.conv2d(pad(conv6), 1024, 3, scope='conv6_1')
+                    # conv6 = slim.conv2d(pad(conv5_1), 1024, 3, stride=2, scope='conv6')
+                    # conv6_1 = slim.conv2d(pad(conv6), 1024, 3, scope='conv6_1')
 
-        return conv3_1, conv4_1, conv5_1, conv6_1
+        return conv3_1, conv4_1, conv5_1#, conv6_1
 

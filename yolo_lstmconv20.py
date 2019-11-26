@@ -9,7 +9,7 @@ import BasicConvLSTMCell
 from flownetsrc.flownet_c.flownet_c import FlowNetC
 from flownetsrc.flownet_s.flownet_s import FlowNetS
 from flownetsrc.flownet_sd.flownet_sd import FlowNetSD
-
+import common
 
 class Net(BasicNet.BasicNet):
   # image_size = 448
@@ -48,6 +48,53 @@ class Net(BasicNet.BasicNet):
     #process params
 
 
+
+  def YOLO_v3(self, images):  # pre128
+      cnnpretrain = False
+      cnntrainable = True
+      with tf.variable_scope('darknet'):
+
+          input_data = common.convolutional(images, filters_shape=(3, 3, 3, 32), trainable=cnntrainable, name='conv0')
+          input_data = common.convolutional(input_data, filters_shape=(3, 3, 32, 64),
+                                            trainable=cnntrainable, name='conv1', downsample=True)
+
+          for i in range(1):
+              input_data = common.residual_block(input_data, 64, 32, 64, trainable=cnntrainable,
+                                                 name='residual%d' % (i + 0))
+
+          input_data = common.convolutional(input_data, filters_shape=(3, 3, 64, 128),
+                                            trainable=cnntrainable, name='conv4', downsample=True) #56
+
+          for i in range(2):
+              input_data = common.residual_block(input_data, 128, 64, 128, trainable=cnntrainable,
+                                                 name='residual%d' % (i + 1))
+
+          input_data = common.convolutional(input_data, filters_shape=(3, 3, 128, 256),
+                                            trainable=cnntrainable, name='conv9', downsample=True) # 28
+
+          for i in range(8):
+              input_data = common.residual_block(input_data, 256, 128, 256, trainable=cnntrainable,
+                                                 name='residual%d' % (i + 3))
+
+          route_1 = input_data
+          input_data = common.convolutional(input_data, filters_shape=(3, 3, 256, 512),
+                                            trainable=cnntrainable, name='conv26', downsample=True)
+
+          for i in range(8):
+              input_data = common.residual_block(input_data, 512, 256, 512, trainable=cnntrainable,
+                                                 name='residual%d' % (i + 11))
+
+          route_2 = input_data
+          input_data = common.convolutional(input_data, filters_shape=(3, 3, 512, 1024),
+                                            trainable=cnntrainable, name='conv43', downsample=True)
+
+          for i in range(4):
+              input_data = common.residual_block(input_data, 1024, 512, 1024, trainable=cnntrainable,
+                                                 name='residual%d' % (i + 19))
+
+          return route_1, route_2, input_data
+
+
   def YOLO_tiny_inference(self, images):  # pre128
       cnnpretrain = False
       cnntrainable = True
@@ -69,10 +116,10 @@ class Net(BasicNet.BasicNet):
       pool_10 = self.max_pool('pool10', conv_9, 2, stride=2)
       conv_11 = self.conv_layer('conv11', pool_10, 3, 512, stride=1, pretrain=cnnpretrain, batchnormalization=True,
                                 trainable=cnntrainable)
-      pool_12 = self.max_pool('pool12', conv_11, 2, stride=2)
-      conv_13 = self.conv_layer('conv13', pool_12, 3, 1024, stride=1, pretrain=cnnpretrain, trainable=cnntrainable)
-      conv_14 = self.conv_layer('conv14', conv_13, 3, 1024, stride=1, pretrain=cnnpretrain, trainable=cnntrainable)
-      conv_15 = self.conv_layer('conv15', conv_14, 3, 1024, stride=1, pretrain=cnnpretrain, trainable=cnntrainable)
+      # pool_12 = self.max_pool('pool12', conv_11, 2, stride=2)
+      # conv_13 = self.conv_layer('conv13', pool_12, 3, 1024, stride=1, pretrain=cnnpretrain, trainable=cnntrainable)
+      # conv_14 = self.conv_layer('conv14', conv_13, 3, 1024, stride=1, pretrain=cnnpretrain, trainable=cnntrainable)
+      # conv_15 = self.conv_layer('conv15', conv_14, 3, 1024, stride=1, pretrain=cnnpretrain, trainable=cnntrainable)
       # temp_conv = tf.transpose(conv_15, (0, 3, 1, 2))
       # fc_16 = self.fc_layer('fc16', temp_conv, 256, flat=True, pretrain=cnnpretrain, trainable=cnntrainable)
       # fc_17 = self.fc_layer('fc17', fc_16, 4096, flat=False, pretrain=cnnpretrain, trainable=cnntrainable)
@@ -80,7 +127,7 @@ class Net(BasicNet.BasicNet):
       #
       # highFeature = tf.reshape(fc_18, [fc_18.get_shape()[0].value, self.cell_size, self.cell_size, -1])
 
-      conv_15_2 = self.conv_layer('conv_15_2', conv_15, 1, 128, stride=1,pretrain=cnnpretrain, trainable=cnntrainable)
+      # conv_15_2 = self.conv_layer('conv_15_2', conv_15, 1, 128, stride=1,pretrain=cnnpretrain, trainable=cnntrainable)
       conv_11_2 = self.conv_layer('conv_11_2', conv_11, 1, 128, stride=1, pretrain=cnnpretrain, trainable=cnntrainable)
       conv_9_2 = self.conv_layer('conv_9_2', conv_9, 1, 128, stride=1,pretrain=cnnpretrain, trainable=cnntrainable)
       # conv_7_2 = self.conv_layer('conv_7_2', conv_7, 1, 256, stride=1, pretrain=False)
@@ -88,9 +135,9 @@ class Net(BasicNet.BasicNet):
       newconv_7 = tf.image.resize_images(conv_7, [tempsize[1], tempsize[2]])
       newconv_9 = tf.image.resize_images(conv_9_2, [tempsize[1], tempsize[2]])
       newconv_11_2 = tf.image.resize_images(conv_11_2, [tempsize[1], tempsize[2]])
-      newconv_15_2 = tf.image.resize_images(conv_15_2, [tempsize[1], tempsize[2]])
+      # newconv_15_2 = tf.image.resize_images(conv_15_2, [tempsize[1], tempsize[2]])
       # highFeature = tf.image.resize_images(highFeature, [tempsize[1], tempsize[2]])
-      FeatureMap = tf.concat([newconv_7, newconv_9, newconv_11_2, newconv_15_2], axis=3)
+      FeatureMap = tf.concat([newconv_7, newconv_9, newconv_11_2], axis=3)
       weight_mask = tf.constant(self.get_centermask(FeatureMap.get_shape().as_list()), dtype=FeatureMap.dtype)
       FeatureMap = FeatureMap * weight_mask
       return FeatureMap
@@ -138,21 +185,21 @@ class Net(BasicNet.BasicNet):
         # conv_5 = self.conv_mask(conv_5, mask)
         conv_5_1 = self.leaky_conv(conv_5, 512, 3, 1, 'FNconv5_1', pretrain=cnnpretrain, trainable=cnntrainable)
         # conv_5_1 = self.conv_mask(conv_5_1, mask)
-        conv_6 = self.leaky_conv(conv_5_1, 1024, 3, 2, 'FNconv6', pretrain=cnnpretrain, trainable=cnntrainable)
-        # conv_6 = self.conv_mask(conv_6, mask)
-        conv_6_1 = self.leaky_conv(conv_6, 1024, 3, 1, 'FNconv6_1', pretrain=cnnpretrain, trainable=cnntrainable)
+        # conv_6 = self.leaky_conv(conv_5_1, 1024, 3, 2, 'FNconv6', pretrain=cnnpretrain, trainable=cnntrainable)
+        # # conv_6 = self.conv_mask(conv_6, mask)
+        # conv_6_1 = self.leaky_conv(conv_6, 1024, 3, 1, 'FNconv6_1', pretrain=cnnpretrain, trainable=cnntrainable)
         # conv_6_1 = self.conv_mask(conv_6_1, mask)
         out_cat_size = conv_3.get_shape().as_list()
 
-        Downconv_6_1 = self.conv_layer('FNDownconv_6_1', conv_6_1, 3, 128, stride=1,pretrain=cnnpretrain, trainable=cnntrainable)
+        # Downconv_6_1 = self.conv_layer('FNDownconv_6_1', conv_6_1, 3, 128, stride=1,pretrain=cnnpretrain, trainable=cnntrainable)
         Downconv_5_1 = self.conv_layer('FNDownconv_5_1', conv_5_1, 3, 128, stride=1, pretrain=cnnpretrain, trainable=cnntrainable)
         Downconv_4_1 = self.conv_layer('FNDownconv_4_1', conv_4_1, 3, 128, stride=1, pretrain=cnnpretrain, trainable=cnntrainable)
         Downconv_3_1 = self.conv_layer('FNDownconv_3_1', conv_3_1, 3, 128, stride=1, pretrain=cnnpretrain, trainable=cnntrainable)
-        conv_6_1_cat = tf.image.resize_images(Downconv_6_1, [out_cat_size[1],out_cat_size[2]])
+        # conv_6_1_cat = tf.image.resize_images(Downconv_6_1, [out_cat_size[1],out_cat_size[2]])
         conv_5_1_cat = tf.image.resize_images(Downconv_5_1, [out_cat_size[1],out_cat_size[2]])
         conv_4_1_cat = tf.image.resize_images(Downconv_4_1, [out_cat_size[1],out_cat_size[2]])
         conv_3_1_cat = tf.image.resize_images(Downconv_3_1, [out_cat_size[1],out_cat_size[2]])
-        concat_out = tf.concat([conv_6_1_cat, conv_5_1_cat, conv_4_1_cat, conv_3_1_cat], axis=3, name='FNconcat_out')
+        concat_out = tf.concat([conv_5_1_cat, conv_4_1_cat, conv_3_1_cat], axis=3, name='FNconcat_out')
 
         return concat_out
 
@@ -170,21 +217,21 @@ class Net(BasicNet.BasicNet):
         flownet = FlowNetSD()
     else:
         raise NotImplementedError('padding [%s] is not implemented' % vflag)
-    conv_3_1, conv_4_1, conv_5_1, conv_6_1 = flownet.model(inputs)
+    conv_3_1, conv_4_1, conv_5_1 = flownet.model(inputs)
     out_cat_size = conv_3_1.get_shape().as_list()
-    Downconv_6_1 = self.conv_layer('FNDownconv_6_1', conv_6_1, 3, 128, stride=1, pretrain=cnnpretrain,
-                                   trainable=cnntrainable)
+    # Downconv_6_1 = self.conv_layer('FNDownconv_6_1', conv_6_1, 3, 128, stride=1, pretrain=cnnpretrain,
+    #                                trainable=cnntrainable)
     Downconv_5_1 = self.conv_layer('FNDownconv_5_1', conv_5_1, 3, 128, stride=1, pretrain=cnnpretrain,
                                    trainable=cnntrainable)
     Downconv_4_1 = self.conv_layer('FNDownconv_4_1', conv_4_1, 3, 128, stride=1, pretrain=cnnpretrain,
                                    trainable=cnntrainable)
     Downconv_3_1 = self.conv_layer('FNDownconv_3_1', conv_3_1, 3, 128, stride=1, pretrain=cnnpretrain,
                                    trainable=cnntrainable)
-    conv_6_1_cat = tf.image.resize_images(Downconv_6_1, [out_cat_size[1], out_cat_size[2]])
+    # conv_6_1_cat = tf.image.resize_images(Downconv_6_1, [out_cat_size[1], out_cat_size[2]])
     conv_5_1_cat = tf.image.resize_images(Downconv_5_1, [out_cat_size[1], out_cat_size[2]])
     conv_4_1_cat = tf.image.resize_images(Downconv_4_1, [out_cat_size[1], out_cat_size[2]])
     conv_3_1_cat = tf.image.resize_images(Downconv_3_1, [out_cat_size[1], out_cat_size[2]])
-    concat_out = tf.concat([conv_6_1_cat, conv_5_1_cat, conv_4_1_cat, conv_3_1_cat], axis=3, name='FNconcat_out')
+    concat_out = tf.concat([conv_5_1_cat, conv_4_1_cat, conv_3_1_cat], axis=3, name='FNconcat_out')
 
     return concat_out
 
