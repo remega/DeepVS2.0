@@ -333,16 +333,16 @@ def out_loss(disout, disgt, distype):
         loss = 0
     return loss
 
-
 def valid(filename, outdir):
     sess.run(iterator.initializer, feed_dict={filenames: filename})
     vdir = os.path.split(filename)[-1]
     vname = vdir.split('.')[0]
-    batch_size = 1
-    mask_in = np.ones((1, 28, 28, 128, 4 * 2))
-    mask_h = np.ones((1, 28, 28, 128, 4 * 2))
+    # batch_size = 1
+    mask_in = np.ones((batch_size, 28, 28, 128, 4 * 2))
+    mask_h = np.ones((batch_size, 28, 28, 128, 4 * 2))
     GTall, _, Frameall = sess.run([GTmap, shape, image])
     numframe = 1
+
     while True:
         try:
             GTmap1, _, image1 = sess.run([GTmap, shape, image])
@@ -353,30 +353,55 @@ def valid(filename, outdir):
             break
     SalOut = np.zeros_like(GTall, np.uint8)
     frameindex = 0
+
     imageInput = Frameall[frameindex:(frameindex + framesnum + frame_skip), ...]
     GTmapInput = GTall[frameindex:(frameindex + framesnum + frame_skip), ...]
     imageInput = imageInput[np.newaxis, ...]
     GTmapInput = GTmapInput[np.newaxis, ...]
+    Input_Batch = imageInput
+    GTmap_Batch = GTmapInput
+
+    for j in range(batch_size-1):
+        frameindex = frameindex + 1
+        imageInput = Frameall[frameindex:(frameindex + framesnum + frame_skip), ...]
+        GTmapInput = GTall[frameindex:(frameindex + framesnum + frame_skip), ...]
+        imageInput = imageInput[np.newaxis, ...]
+        GTmapInput = GTmapInput[np.newaxis, ...]
+        GTmap_Batch = np.concatenate((GTmap_Batch, GTmapInput), axis=0)
+        Input_Batch = np.concatenate((Input_Batch, imageInput), axis=0)
     np_predict = sess.run(predicts,
-                          feed_dict={input: imageInput, GroundTruth: GTmapInput,
+                          feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch,
                                      RNNmask_in: mask_in, RNNmask_h: mask_h})
     np_predict = np.uint8(np_predict * 255)
+
     for i in range(frame_skip):
-        SalOut[i,...] = np_predict[0,0,...]
-    SalOut[frame_skip:frame_skip+framesnum,...] = np_predict[0,...]
+        SalOut[i, ...] = np_predict[0,0,...]
+    SalOut[frame_skip:frame_skip+framesnum, ...] = np_predict[0,...]
+    for j in range(batch_size - 1):
+        SalOut[j + frame_skip + framesnum, ...] = np_predict[j+1, -1, ...]
+
     frameindex = frameindex + 1
+    batch_count = 0
     while frameindex + framesnum + frame_skip <= numframe:
         imageInput = Frameall[frameindex:(frameindex + framesnum + frame_skip), ...]
         GTmapInput = GTall[frameindex:(frameindex + framesnum + frame_skip), ...]
         imageInput = imageInput[np.newaxis, ...]
         GTmapInput = GTmapInput[np.newaxis, ...]
+        if batch_count == 0:
+            GTmap_Batch = GTmapInput
+            Input_Batch = imageInput
+            batch_count = batch_count + 1
+        else:
+            GTmap_Batch = np.concatenate((GTmap_Batch, GTmapInput), axis=0)
+            Input_Batch = np.concatenate((Input_Batch, imageInput), axis=0)
+            batch_count = batch_count + 1
+        if batch_count == batch_size:
+            np_predict = sess.run(predicts,
+                                  feed_dict={input: imageInput, GroundTruth: GTmapInput,
+                                             RNNmask_in: mask_in, RNNmask_h: mask_h})
+            np_predict = np.uint8(np_predict * 255)
+            SalOut[(frameindex + frame_skip + framesnum - batch_size):(frameindex + frame_skip + framesnum), ...] = np_predict[:, -1, ...]
         frameindex = frameindex + 1
-        np_predict = sess.run(predicts,
-                              feed_dict={input: imageInput, GroundTruth: GTmapInput,
-                                         RNNmask_in: mask_in, RNNmask_h: mask_h})
-        np_predict = np.uint8(np_predict * 255)
-        SalOut[frameindex -1 + frame_skip + framesnum, ...] = np_predict[0, -1, ...]
-
     writer = imageio.get_writer(outdir + '/' + vname + '.avi', fps=30)
     iter = 0
     sum_CC = 0
