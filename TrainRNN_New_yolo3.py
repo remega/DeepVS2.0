@@ -12,7 +12,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 # global w_img,h_img
 # w_img = 640 #
 # h_img = 480 #
-batch_size = 4
+batch_size = 3
 framesnum = 16
 inputDim = 224
 input_size = (inputDim, inputDim)
