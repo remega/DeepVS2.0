@@ -401,12 +401,13 @@ def valid(filename, outdir):
                                              RNNmask_in: mask_in, RNNmask_h: mask_h})
             np_predict = np.uint8(np_predict * 255)
             SalOut[(frameindex + frame_skip + framesnum - batch_size):(frameindex + frame_skip + framesnum), ...] = np_predict[:, -1, ...]
+            curframe = frameindex + frame_skip + framesnum
         frameindex = frameindex + 1
     writer = imageio.get_writer(outdir + '/' + vname + '.avi', fps=30)
     iter = 0
     sum_CC = 0
     sum_KL = 0
-    for indexFrame in range(SalOut.shape[0]):
+    for indexFrame in range(curframe):
         assert np.sum(SalOut[indexFrame, ..., 0]) != 0
         tempCC = cacCC(GTall[indexFrame, ..., 0], SalOut[indexFrame, ..., 0])
         tempKL = cacKL(GTall[indexFrame, ..., 0], SalOut[indexFrame, ..., 0])

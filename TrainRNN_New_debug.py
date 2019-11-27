@@ -7,12 +7,12 @@ from scipy.optimize import linprog
 import os
 import glob
 import imageio
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
 # global w_img,h_img
 # w_img = 640 #
 # h_img = 480 #
-batch_size = 4
+batch_size = 3
 framesnum = 16
 inputDim = 224
 input_size = (inputDim, inputDim)
@@ -31,7 +31,8 @@ tf.set_random_seed(730)
 frame_skip = 5
 dis_type = 'dualKL' # Wassers,dualWassers, KL,dualKL
 dislambda = 0.25
-modelname = 'Newlstmconv224_nopre_loss05_dp075'
+flowversion = '2c'
+modelname = 'Newlstmconv224_nopre_loss05_dp075_flow2c'
 
 TrainingFile1 = '../LEDOVTFrecords/training/'
 TrainingFile2 = '../LEDOVTFrecords/validation/'
@@ -44,7 +45,7 @@ Valid_list = [Validfile1] + [Validfile2] + [Validfile3]
 # VideoNameFile = 'Traininglist.txt' #'Validationlist.txt'# 'Traininglist.txt'     #choose the data
 # Video_dir = 'G:\database\statistics\database'
 # CheckpointFile_yolo = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
-# CheckpointFile_flow = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
+# CheckpointFile_flow = './model/pretrain/flownet-CS.ckpt-0'
 SaveFile = './model/'
 Summary_dir = './summary'
 res_dir = './res'
@@ -74,6 +75,7 @@ net.dp_h = dp_h
 net.lambdadis = dislambda
 net.disnum = numdis
 net.distype = dis_type
+net.version_flow = flowversion
 
 input = tf.placeholder(tf.float32, (batch_size, framesnum + frame_skip, input_size[0], input_size[1], 3))
 GroundTruth = tf.placeholder(tf.float32, (batch_size, framesnum + frame_skip, output_size[0], output_size[1], 1))
@@ -207,7 +209,7 @@ def main():
                     mask_in = np.concatenate((mask_in, mask_in_s), axis=0)
                     mask_h = np.concatenate((mask_h, mask_h_s), axis=0)
                     batch_count = batch_count + 1
-                if batch_count ==  batch_size:
+                if batch_count == batch_size:
                         batch_count = 0
                         iter += 1
                         _, loss = sess.run([train_op, loss_op],  feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch, RNNmask_in: mask_in, RNNmask_h: mask_h, exloss:0})
@@ -226,6 +228,8 @@ def main():
                 usedtime = (time.time() - start_time)/3600
                 meanloss = losslist.mean()
                 print('%d th video: %s; Have used time: %f hrs, average loss %f' % (v_count, vname, usedtime,meanloss))
+                validCC, validKL = valid(vfile, subres)
+
 
         duration = time.time() - start_time1
         start_time1 = time.time()
@@ -330,8 +334,6 @@ def out_loss(disout, disgt, distype):
     else:
         loss = 0
     return loss
-
-
 
 def valid(filename, outdir):
     sess.run(iterator.initializer, feed_dict={filenames: filename})
