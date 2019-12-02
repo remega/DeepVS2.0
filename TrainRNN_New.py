@@ -229,7 +229,7 @@ def main():
                 print('%d th video: %s; Have used time: %f hrs, average loss %f' % (v_count, vname, usedtime,meanloss))
 
         duration = time.time() - start_time1
-        start_time1 = time.time()
+        # start_time1 = time.time()
         meanloss = losslist.mean()
         losslist = np.array([])
         print('Total time for this epoch is %f, average loss %f.' % (
