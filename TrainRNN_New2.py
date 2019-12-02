@@ -4,6 +4,7 @@ import time
 import yolo_lstmconv20 as Network  # define the CNN
 import random
 from scipy.optimize import linprog
+import scipy.misc as smi
 import os
 import glob
 import imageio
@@ -18,6 +19,7 @@ inputDim = 224
 input_size = (inputDim, inputDim)
 outputDim = 56
 output_size = (outputDim, outputDim)
+output_size2 = (64, 64)
 epoch_num = 20
 overlapframe = 10 #0~framesnum+frame_skip
 
@@ -415,7 +417,9 @@ def valid(filename, outdir):
             iter += 1
             sum_CC += tempCC
             sum_KL += tempKL
-        writer.append_data(SalOut[indexFrame, ..., 0])
+        temp = np.float32(SalOut[indexFrame, ..., 0])
+        temp = smi.resize(temp, output_size2)
+        writer.append_data(temp)
     writer.close()
     if iter == 0:
         return 0, 10

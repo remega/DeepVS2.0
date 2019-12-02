@@ -7,6 +7,7 @@ from scipy.optimize import linprog
 import os
 import glob
 import imageio
+import scipy.misc as smi
 os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
 # global w_img,h_img
@@ -18,6 +19,7 @@ inputDim = 448
 input_size = (inputDim, inputDim)
 outputDim = 112
 output_size = (outputDim, outputDim)
+output_size2 = (128, 128)
 epoch_num = 20
 overlapframe = 10 #0~framesnum+frame_skip
 
@@ -408,6 +410,8 @@ def valid(filename, outdir):
     sum_CC = 0
     sum_KL = 0
     for indexFrame in range(curframe):
+        print(curframe)
+        print(numframe)
         assert np.sum(SalOut[indexFrame, ..., 0]) != 0
         tempCC = cacCC(GTall[indexFrame, ..., 0], SalOut[indexFrame, ..., 0])
         tempKL = cacKL(GTall[indexFrame, ..., 0], SalOut[indexFrame, ..., 0])
@@ -415,7 +419,9 @@ def valid(filename, outdir):
             iter += 1
             sum_CC += tempCC
             sum_KL += tempKL
-        writer.append_data(SalOut[indexFrame, ..., 0])
+        temp = np.float32(SalOut[indexFrame, ..., 0])
+        temp = smi.resize(temp, output_size2)
+        writer.append_data(temp)
     writer.close()
     if iter == 0:
         return 0, 10
