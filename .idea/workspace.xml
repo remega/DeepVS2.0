@@ -63,11 +63,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5840059">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="285">
-                  <caret line="231" selection-start-line="231" selection-end-line="231" selection-end-column="35" />
+                <state relative-caret-position="399">
+                  <caret line="42" column="55" lean-forward="true" selection-start-line="42" selection-start-column="55" selection-end-line="42" selection-end-column="55" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -75,20 +75,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/yolo_lstmconv2.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="19">
-                  <caret line="160" column="15" selection-start-line="160" selection-start-column="8" selection-end-line="160" selection-end-column="15" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="516">
-                  <caret line="422" column="43" selection-start-line="422" selection-start-column="43" selection-end-line="422" selection-end-column="43" />
+                <state relative-caret-position="269">
+                  <caret line="52" selection-start-line="52" selection-end-line="52" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -255,10 +246,10 @@
         <option value="$PROJECT_DIR$/yolo_lstmconv20.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New_debug.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New_flow20.py" />
-        <option value="$PROJECT_DIR$/TrainRNN_New2.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New_flow20_2.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New_yolo3.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New.py" />
+        <option value="$PROJECT_DIR$/TrainRNN_New2.py" />
       </list>
     </option>
   </component>
@@ -484,12 +475,12 @@
       <workItem from="1574225520522" duration="106000" />
       <workItem from="1574362268105" duration="23447000" />
       <workItem from="1574635716670" duration="43959000" />
-      <workItem from="1575252802376" duration="155000" />
+      <workItem from="1575252802376" duration="1214000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79929000" />
+    <option name="totallyTimeSpent" value="80988000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -798,16 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="422" column="43" selection-start-line="422" selection-start-column="43" selection-end-line="422" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/yolo_lstmconv2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -817,8 +798,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="231" selection-start-line="231" selection-end-line="231" selection-end-column="35" />
+        <state relative-caret-position="399">
+          <caret line="42" column="55" lean-forward="true" selection-start-line="42" selection-start-column="55" selection-end-line="42" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

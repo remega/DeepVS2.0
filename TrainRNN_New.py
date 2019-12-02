@@ -45,12 +45,12 @@ Valid_list = [Validfile1] + [Validfile2] + [Validfile3]
 # Video_dir = 'G:\database\statistics\database'
 CheckpointFile_yolo = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
 CheckpointFile_flow = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
-SaveFile = './model/'
-Summary_dir = './summary'
-res_dir = './res'
-# Summary_dir = '/tmp/aremega/deepvs/summary'
-# res_dir = '/tmp/aremega/deepvs/res'
-# SaveFile = '/tmp/aremega/deepvs/model/'
+# SaveFile = './model/'
+# Summary_dir = './summary'
+# res_dir = './res'
+Summary_dir = '/tmp/aremega/deepvs/summary'
+res_dir = '/tmp/aremega/deepvs/res'
+SaveFile = '/tmp/aremega/deepvs/model/'
 if not os.path.isdir(Summary_dir):
     os.mkdir(Summary_dir)
 if not os.path.isdir(SaveFile):
