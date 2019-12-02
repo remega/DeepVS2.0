@@ -50,6 +50,8 @@ Valid_list = [Validfile1] + [Validfile2] + [Validfile3]
 # SaveFile = './model/'
 # Summary_dir = './summary'
 # res_dir = './res'
+if not os.path.isdir('/tmp/aremega/deepvs'):
+    os.mkdir('/tmp/aremega/deepvs')
 Summary_dir = '/tmp/aremega/deepvs/summary'
 res_dir = '/tmp/aremega/deepvs/res'
 SaveFile = '/tmp/aremega/deepvs/model/'

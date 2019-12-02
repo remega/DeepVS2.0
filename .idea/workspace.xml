@@ -66,17 +66,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="171">
-                  <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="24" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-722">
-                  <caret line="13" column="15" lean-forward="true" selection-end-line="453" />
+                <state relative-caret-position="190">
+                  <caret line="52" selection-start-line="52" selection-end-line="53" selection-end-column="35" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -85,10 +76,22 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="304">
+                  <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/TrainRNN_New_debug.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="293">
-                  <caret line="227" column="54" selection-start-line="227" selection-start-column="54" selection-end-line="227" selection-end-column="54" />
+                <state relative-caret-position="1026">
+                  <caret line="54" column="39" lean-forward="true" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -149,7 +152,7 @@
             <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="98">
-                  <caret line="199" selection-start-line="199" selection-end-line="211" selection-end-column="46" />
+                  <caret line="201" selection-start-line="201" selection-end-line="213" selection-end-column="46" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -256,9 +259,9 @@
         <option value="$PROJECT_DIR$/TrainRNN_New_flow20.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New_flow20_2.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New_yolo3.py" />
+        <option value="$PROJECT_DIR$/TrainRNN_New_debug.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New.py" />
         <option value="$PROJECT_DIR$/TrainRNN_New2.py" />
-        <option value="$PROJECT_DIR$/TrainRNN_New_debug.py" />
       </list>
     </option>
   </component>
@@ -484,12 +487,12 @@
       <workItem from="1574225520522" duration="106000" />
       <workItem from="1574362268105" duration="23447000" />
       <workItem from="1574635716670" duration="43959000" />
-      <workItem from="1575252802376" duration="3540000" />
+      <workItem from="1575252802376" duration="3848000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83314000" />
+    <option name="totallyTimeSpent" value="83622000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -798,27 +801,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
+    <entry file="file://$PROJECT_DIR$/TrainRNN_New_debug.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" selection-start-line="9" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-722">
-          <caret line="13" column="15" lean-forward="true" selection-end-line="453" />
+        <state relative-caret-position="1026">
+          <caret line="54" column="39" lean-forward="true" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TrainRNN_New_debug.py">
+    <entry file="file://$PROJECT_DIR$/TrainRNN_New.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="227" column="54" selection-start-line="227" selection-start-column="54" selection-end-line="227" selection-end-column="54" />
+        <state relative-caret-position="190">
+          <caret line="52" selection-start-line="52" selection-end-line="53" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TrainRNN_New2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
