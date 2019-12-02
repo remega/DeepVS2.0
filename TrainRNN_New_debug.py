@@ -4,20 +4,22 @@ import time
 import yolo_lstmconv20 as Network  # define the CNN
 import random
 from scipy.optimize import linprog
+import scipy.misc as smi
 import os
 import glob
 import imageio
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 # global w_img,h_img
 # w_img = 640 #
 # h_img = 480 #
-batch_size = 3
+batch_size = 4
 framesnum = 16
 inputDim = 224
 input_size = (inputDim, inputDim)
 outputDim = 56
 output_size = (outputDim, outputDim)
+output_size2 = (64, 64)
 epoch_num = 20
 overlapframe = 10 #0~framesnum+frame_skip
 
@@ -31,8 +33,7 @@ tf.set_random_seed(730)
 frame_skip = 5
 dis_type = 'dualKL' # Wassers,dualWassers, KL,dualKL
 dislambda = 0.25
-flowversion = '2c'
-modelname = 'Newlstmconv224_nopre_loss05_dp075_flow2c'
+modelname = 'Newlstmconv224_nopre_loss05_dp075'
 
 TrainingFile1 = '../LEDOVTFrecords/training/'
 TrainingFile2 = '../LEDOVTFrecords/validation/'
@@ -45,13 +46,13 @@ Valid_list = [Validfile1] + [Validfile2] + [Validfile3]
 # VideoNameFile = 'Traininglist.txt' #'Validationlist.txt'# 'Traininglist.txt'     #choose the data
 # Video_dir = 'G:\database\statistics\database'
 # CheckpointFile_yolo = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
-# CheckpointFile_flow = './model/pretrain/flownet-CS.ckpt-0'
-SaveFile = './model/'
-Summary_dir = './summary'
-res_dir = './res'
-# Summary_dir = '/tmp/aremega/deepvs/summary'
-# res_dir = '/tmp/aremega/deepvs/res'
-# SaveFile = '/tmp/aremega/deepvs/model/'
+# CheckpointFile_flow = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
+# SaveFile = './model/'
+# Summary_dir = './summary'
+# res_dir = './res'
+Summary_dir = '/tmp/aremega/deepvs/summary'
+res_dir = '/tmp/aremega/deepvs/res'
+SaveFile = '/tmp/aremega/deepvs/model/'
 if not os.path.isdir(Summary_dir):
     os.mkdir(Summary_dir)
 if not os.path.isdir(SaveFile):
@@ -75,7 +76,6 @@ net.dp_h = dp_h
 net.lambdadis = dislambda
 net.disnum = numdis
 net.distype = dis_type
-net.version_flow = flowversion
 
 input = tf.placeholder(tf.float32, (batch_size, framesnum + frame_skip, input_size[0], input_size[1], 3))
 GroundTruth = tf.placeholder(tf.float32, (batch_size, framesnum + frame_skip, output_size[0], output_size[1], 1))
@@ -209,7 +209,7 @@ def main():
                     mask_in = np.concatenate((mask_in, mask_in_s), axis=0)
                     mask_h = np.concatenate((mask_h, mask_h_s), axis=0)
                     batch_count = batch_count + 1
-                if batch_count == batch_size:
+                if batch_count ==  batch_size:
                         batch_count = 0
                         iter += 1
                         _, loss = sess.run([train_op, loss_op],  feed_dict={input: Input_Batch, GroundTruth: GTmap_Batch, RNNmask_in: mask_in, RNNmask_h: mask_h, exloss:0})
@@ -225,14 +225,13 @@ def main():
                             summary_writer.add_summary(summary, iter)
 
             if epoch == 0:
+                validCC, validKL = valid(vfile, subres)
                 usedtime = (time.time() - start_time)/3600
                 meanloss = losslist.mean()
                 print('%d th video: %s; Have used time: %f hrs, average loss %f' % (v_count, vname, usedtime,meanloss))
-                validCC, validKL = valid(vfile, subres)
-
 
         duration = time.time() - start_time1
-        start_time1 = time.time()
+        # start_time1 = time.time()
         meanloss = losslist.mean()
         losslist = np.array([])
         print('Total time for this epoch is %f, average loss %f.' % (
@@ -335,6 +334,8 @@ def out_loss(disout, disgt, distype):
         loss = 0
     return loss
 
+
+
 def valid(filename, outdir):
     sess.run(iterator.initializer, feed_dict={filenames: filename})
     vdir = os.path.split(filename)[-1]
@@ -417,7 +418,9 @@ def valid(filename, outdir):
             iter += 1
             sum_CC += tempCC
             sum_KL += tempKL
-        writer.append_data(SalOut[indexFrame, ..., 0])
+        temp = np.float32(SalOut[indexFrame, ..., 0])
+        temp = smi.resize(temp, output_size2)
+        writer.append_data(temp)
     writer.close()
     if iter == 0:
         return 0, 10
