@@ -422,7 +422,7 @@ def valid(filename, outdir):
             sum_CC += tempCC
             sum_KL += tempKL
         temp = np.float32(SalOut[indexFrame, ..., 0])
-        temp = smi.resize(temp, output_size2)
+        temp = smi.imresize(temp, output_size2)
         writer.append_data(temp)
     writer.close()
     if iter == 0:
