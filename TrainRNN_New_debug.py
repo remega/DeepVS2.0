@@ -412,6 +412,8 @@ def valid(filename, outdir):
     sum_CC = 0
     sum_KL = 0
     for indexFrame in range(curframe):
+        print(curframe)
+        print(numframe)
         assert np.sum(SalOut[indexFrame, ..., 0]) != 0
         tempCC = cacCC(GTall[indexFrame, ..., 0], SalOut[indexFrame, ..., 0])
         tempKL = cacKL(GTall[indexFrame, ..., 0], SalOut[indexFrame, ..., 0])
