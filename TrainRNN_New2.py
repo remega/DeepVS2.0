@@ -422,7 +422,7 @@ def valid(filename, outdir):
             sum_KL += tempKL
         temp = np.float32(SalOut[indexFrame, ..., 0])
         temp = cv2.resize(temp, output_size2)
-        writer.append_data(temp)
+        writer.append_data(np.uint8(temp))
     writer.close()
     if iter == 0:
         return 0, 10
