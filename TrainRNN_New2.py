@@ -8,6 +8,7 @@ import scipy.misc as smi
 import os
 import glob
 import imageio
+import cv2
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 # global w_img,h_img
@@ -420,7 +421,7 @@ def valid(filename, outdir):
             sum_CC += tempCC
             sum_KL += tempKL
         temp = np.float32(SalOut[indexFrame, ..., 0])
-        temp = smi.imresize(temp, output_size2)
+        temp = cv2.resize(temp, output_size2)
         writer.append_data(temp)
     writer.close()
     if iter == 0:

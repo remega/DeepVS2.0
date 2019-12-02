@@ -7,7 +7,8 @@ from scipy.optimize import linprog
 import os
 import glob
 import imageio
-import scipy.misc as smi
+import cv2
+#import scipy.misc as smi
 os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
 # global w_img,h_img
@@ -422,8 +423,8 @@ def valid(filename, outdir):
             sum_CC += tempCC
             sum_KL += tempKL
         temp = np.float32(SalOut[indexFrame, ..., 0])
-        temp = smi.imresize(temp, output_size2)
-        writer.append_data(temp)
+        temp = cv2.resize(temp, output_size2)
+        writer.append_data(np.uint8(temp))
     writer.close()
     if iter == 0:
         return 0, 10
