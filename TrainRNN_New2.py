@@ -9,12 +9,12 @@ import os
 import glob
 import imageio
 import cv2
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 # global w_img,h_img
 # w_img = 640 #
 # h_img = 480 #
-batch_size = 4
+batch_size = 3
 framesnum = 16
 inputDim = 224
 input_size = (inputDim, inputDim)
