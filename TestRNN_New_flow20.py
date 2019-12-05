@@ -8,7 +8,7 @@ import os
 import cv2
 import glob
 import imageio
-os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 # global w_img,h_img
 # w_img = 640 #
@@ -33,8 +33,8 @@ tf.set_random_seed(730)
 frame_skip = 5
 dis_type = 'dualKL' # Wassers,dualWassers, KL,dualKL
 dislambda = 0.25
-flowversion = '2c'
-yoloversion = 1
+flowversion = '1'
+yoloversion = 3
 
 
 
@@ -46,7 +46,7 @@ Valid_list = [Validfile1] + [Validfile2] + [Validfile3]
 # Video_dir = 'G:\database\statistics\database'
 # CheckpointFile_yolo = './model/pretrain/CNN_YoloFlow_nofinetuned_batch12_premask_lb05_loss05_fea128_1x512_128-185000'
 # CheckpointFile_flow = './model/pretrain/flownet-CS.ckpt-0'
-SaveFile = './model/'
+SaveFile = './model/pretrain/'
 res_dir = './restest'
 # Summary_dir = '/tmp/aremega/deepvs/summary'
 # res_dir = '/tmp/aremega/deepvs/res'
@@ -56,7 +56,7 @@ if not os.path.isdir(SaveFile):
 if not os.path.isdir(res_dir):
     os.mkdir(res_dir)
 
-targetname = 'Newlstmconv224_nopre_loss05_dp075_flow2c-19'
+targetname = 'Newlstmconv224_nopre_loss05_dp075_yolo3-19'
 CheckpointFile = SaveFile + targetname
 
 ValidData_index = [0, 1, 2]
