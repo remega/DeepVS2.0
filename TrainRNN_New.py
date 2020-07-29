@@ -87,6 +87,9 @@ RNNmask_h = tf.placeholder(tf.float32, (batch_size, 28, 28, 128, 4 * 2))
 exloss = tf.placeholder(tf.float32)
 
 net.inference(input, GroundTruth, RNNmask_in, RNNmask_h)
+
+print(np.sum([np.prod(v.get_shape().as_list()) for v in tf.trainable_variables()]))
+
 net._loss(exloss)
 loss_op = net.loss
 extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
